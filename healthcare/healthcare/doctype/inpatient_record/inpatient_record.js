@@ -21,6 +21,14 @@ frappe.ui.form.on('Inpatient Record', {
 			};
 		});
 
+		frm.set_query('admission_service_unit', function() {
+			return {
+				filters: {
+					'healthcare_service_unit_name': 'Unit 1',
+				}
+			};
+		});
+
 		frm.set_query('primary_practitioner', function() {
 			return {
 				filters: {
@@ -74,7 +82,11 @@ let discharge_patient = function(frm) {
 	});
 };
 
-let admit_patient_dialog = function(frm) {
+let admit_patient_dialog = async function(frm) {
+	const default_service_unit = await get_default_service_unit()
+
+	console.log("default: ", default_service_unit, frm.doc)
+
 	let dialog = new frappe.ui.Dialog({
 		title: 'Admit Patient',
 		width: 100,
@@ -83,14 +95,11 @@ let admit_patient_dialog = function(frm) {
 				options: 'Healthcare Service Unit Type', default: frm.doc.admission_service_unit_type
 			},
 			{fieldtype: 'Link', label: 'Service Unit', fieldname: 'service_unit',
-				options: 'Healthcare Service Unit', reqd: 1
+				options: 'Healthcare Service Unit', reqd: 1, default: default_service_unit,
 			},
 			{fieldtype: 'Datetime', label: 'Admission Datetime', fieldname: 'check_in',
 				reqd: 1, default: frappe.datetime.now_datetime()
 			},
-			{fieldtype: 'Date', label: 'Expected Discharge', fieldname: 'expected_discharge',
-				default: frm.doc.expected_length_of_stay ? frappe.datetime.add_days(frappe.datetime.now_datetime(), frm.doc.expected_length_of_stay) : ''
-			}
 		],
 		primary_action_label: __('Admit'),
 		primary_action : function(){
@@ -127,18 +136,14 @@ let admit_patient_dialog = function(frm) {
 	dialog.fields_dict['service_unit_type'].get_query = function() {
 		return {
 			filters: {
-				'inpatient_occupancy': 1,
-				'allow_appointments': 0
+				'service_unit_type': 'General and Minimal Access Surgery Units',
 			}
 		};
 	};
 	dialog.fields_dict['service_unit'].get_query = function() {
 		return {
 			filters: {
-				'is_group': 0,
-				'company': frm.doc.company,
-				'service_unit_type': dialog.get_value('service_unit_type'),
-				'occupancy_status' : 'Vacant'
+				'healthcare_service_unit_name': 'Unit 1',
 			}
 		};
 	};
@@ -325,4 +330,20 @@ let cancel_ip_order = function(frm) {
 			}
 		});
 	}, __('Reason for Cancellation'), __('Submit'));
+}
+
+async function get_default_service_unit() {
+	try {
+		const unit = await frappe.db.get_doc(
+			'Healthcare Service Unit',
+			null,
+			{
+				healthcare_service_unit_name: 'Unit 1',
+			}
+		)
+
+		return unit?.name || null
+	} catch {
+		return null	
+	}
 }

@@ -289,7 +289,6 @@ def get_pending_invoices(inpatient_record):
 
 	return pending_invoices
 
-
 def get_pending_doc(doc, doc_name_list, pending_invoices):
 	if doc_name_list:
 		doc_ids = False

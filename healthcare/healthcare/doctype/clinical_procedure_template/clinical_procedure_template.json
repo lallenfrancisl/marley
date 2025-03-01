@@ -17,15 +17,6 @@
   "disabled",
   "pre_op_nursing_checklist_template",
   "post_op_nursing_checklist_template",
-  "billing_section",
-  "column_break_ea5h",
-  "link_existing_item",
-  "item",
-  "item_code",
-  "item_group",
-  "column_break_lhbf",
-  "is_billable",
-  "rate",
   "consumption_tab",
   "consumables",
   "consume_stock",
@@ -55,25 +46,6 @@
    "unique": 1
   },
   {
-   "depends_on": "eval:!doc.link_existing_item || !doc.__islocal",
-   "fieldname": "item_code",
-   "fieldtype": "Data",
-   "label": "Item Code",
-   "mandatory_depends_on": "eval:!doc.link_existing_item",
-   "read_only_depends_on": "eval: !doc.__islocal"
-  },
-  {
-   "fieldname": "item_group",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Item Group",
-   "options": "Item Group",
-   "read_only_depends_on": "eval:doc.link_existing_item",
-   "reqd": 1
-  },
-  {
    "fieldname": "medical_department",
    "fieldtype": "Link",
    "label": "Medical Department",
@@ -82,22 +54,6 @@
   {
    "fieldname": "column_break_5",
    "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "depends_on": "eval:!doc.link_existing_item || !doc.__islocal;",
-   "fieldname": "is_billable",
-   "fieldtype": "Check",
-   "label": "Is Billable"
-  },
-  {
-   "depends_on": "eval:doc.is_billable && (!doc.link_existing_item || !doc.__islocal)",
-   "fieldname": "rate",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Rate",
-   "mandatory_depends_on": "eval:doc.is_billable && !doc.link_existing_item"
   },
   {
    "fieldname": "description",
@@ -178,18 +134,6 @@
    "label": "Disabled"
   },
   {
-   "depends_on": "eval: !doc.__islocal || doc.link_existing_item",
-   "fieldname": "item",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Item",
-   "mandatory_depends_on": "eval:doc.link_existing_item",
-   "no_copy": 1,
-   "options": "Item",
-   "read_only_depends_on": "eval: !doc.__islocal"
-  },
-  {
    "fieldname": "codification_table",
    "fieldtype": "Table",
    "label": "Medical Codes",
@@ -212,26 +156,6 @@
    "fieldtype": "Link",
    "label": "Post-op Nursing Checklist Template",
    "options": "Nursing Checklist Template"
-  },
-  {
-   "default": "0",
-   "depends_on": "eval: doc.__islocal",
-   "fieldname": "link_existing_item",
-   "fieldtype": "Check",
-   "label": "Link existing Item"
-  },
-  {
-   "fieldname": "billing_section",
-   "fieldtype": "Section Break",
-   "label": "Billing"
-  },
-  {
-   "fieldname": "column_break_ea5h",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_lhbf",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "consumption_tab",
@@ -262,7 +186,7 @@
   }
  ],
  "links": [],
- "modified": "2023-11-06 15:00:26.292044",
+ "modified": "2025-03-01 17:10:48.191515",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure Template",
