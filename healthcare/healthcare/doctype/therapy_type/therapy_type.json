@@ -209,11 +209,12 @@
    "collapsible": 1,
    "fieldname": "service_request_defaults_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Service Request Defaults"
   }
  ],
  "links": [],
- "modified": "2023-11-06 14:59:47.927972",
+ "modified": "2025-03-02 09:02:58.805420",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Therapy Type",
