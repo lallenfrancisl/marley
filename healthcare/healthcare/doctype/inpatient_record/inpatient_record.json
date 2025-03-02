@@ -195,6 +195,7 @@
   {
    "fieldname": "expected_length_of_stay",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Expected Length of Stay",
    "mandatory_depends_on": "eval:!doc.admission_encounter;",
    "set_only_once": 1
@@ -424,12 +425,14 @@
   {
    "fieldname": "discharge_nursing_checklist_template",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Discharge Nursing Checklist Template",
    "options": "Nursing Checklist Template"
   },
   {
    "fieldname": "admission_nursing_checklist_template",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Admission Nursing Checklist Template",
    "options": "Nursing Checklist Template"
   },
@@ -448,7 +451,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-02 00:26:38.399220",
+ "modified": "2025-03-02 06:53:41.272206",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",

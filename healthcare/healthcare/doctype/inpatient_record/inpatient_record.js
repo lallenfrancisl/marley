@@ -85,8 +85,6 @@ let discharge_patient = function(frm) {
 let admit_patient_dialog = async function(frm) {
 	const default_service_unit = await get_default_service_unit()
 
-	console.log("default: ", default_service_unit, frm.doc)
-
 	let dialog = new frappe.ui.Dialog({
 		title: 'Admit Patient',
 		width: 100,
