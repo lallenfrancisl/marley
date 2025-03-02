@@ -49,6 +49,7 @@
   "medical_codes_tab",
   "codification_table",
   "billing_tab",
+  "section_break_prsn",
   "is_billable",
   "link_existing_item",
   "item",
@@ -272,6 +273,7 @@
   {
    "fieldname": "billing_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Billing"
   },
   {
@@ -389,6 +391,7 @@
   {
    "fieldname": "service_request_defaults_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Service Request Defaults"
   },
   {
@@ -396,11 +399,16 @@
    "fieldtype": "Link",
    "label": "Staff Role",
    "options": "Role"
+  },
+  {
+   "fieldname": "section_break_prsn",
+   "fieldtype": "Section Break",
+   "hidden": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-12-06 14:40:08.511353",
+ "modified": "2025-03-02 07:50:41.153263",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Observation Template",
