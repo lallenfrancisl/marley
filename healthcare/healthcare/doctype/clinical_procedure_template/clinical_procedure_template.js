@@ -3,8 +3,8 @@
 
 frappe.ui.form.on('Clinical Procedure Template', {
 	template: function (frm) {
-		if (!frm.doc.item_code)
-			frm.set_value('item_code', frm.doc.template);
+		// if (!frm.doc.item_code)
+		// 	frm.set_value('item_code', frm.doc.template);
 		if (!frm.doc.description)
 			frm.set_value('description', frm.doc.template);
 		mark_change_in_item(frm);
@@ -41,14 +41,14 @@ frappe.ui.form.on('Clinical Procedure Template', {
 			});
 		}
 
-		frm.set_query('item', function() {
-			return {
-				filters: {
-					'disabled': false,
-					'is_stock_item': false
-				}
-			};
-		});
+		// frm.set_query('item', function() {
+		// 	return {
+		// 		filters: {
+		// 			'disabled': false,
+		// 			'is_stock_item': false
+		// 		}
+		// 	};
+		// });
 
 		frm.set_query("code_value", "codification_table", function(doc, cdt, cdn) {
 			let row = frappe.get_doc(cdt, cdn);
@@ -201,26 +201,26 @@ frappe.tour['Clinical Procedure Template'] = [
 		title: __('Template Name'),
 		description: __('Enter a name for the Clinical Procedure Template')
 	},
-	{
-		fieldname: 'item_code',
-		title: __('Item Code'),
-		description: __('Set the Item Code which will be used for billing the Clinical Procedure.')
-	},
-	{
-		fieldname: 'item_group',
-		title: __('Item Group'),
-		description: __('Select an Item Group for the Clinical Procedure Item.')
-	},
-	{
-		fieldname: 'is_billable',
-		title: __('Clinical Procedure Rate'),
-		description: __('Check this if the Clinical Procedure is billable and also set the rate.')
-	},
-	{
-		fieldname: 'consume_stock',
-		title: __('Allow Stock Consumption'),
-		description: __('Check this if the Clinical Procedure utilises consumables. Click ') + "<a href='https://frappehealth.com/docs/v13/user/manual/en/healthcare/clinical_procedure_template#22-manage-procedure-consumables' target='_blank'>here</a>" + __(' to know more')
-	},
+	// {
+	// 	fieldname: 'item_code',
+	// 	title: __('Item Code'),
+	// 	description: __('Set the Item Code which will be used for billing the Clinical Procedure.')
+	// },
+	// {
+	// 	fieldname: 'item_group',
+	// 	title: __('Item Group'),
+	// 	description: __('Select an Item Group for the Clinical Procedure Item.')
+	// },
+	// {
+	// 	fieldname: 'is_billable',
+	// 	title: __('Clinical Procedure Rate'),
+	// 	description: __('Check this if the Clinical Procedure is billable and also set the rate.')
+	// },
+	// {
+	// 	fieldname: 'consume_stock',
+	// 	title: __('Allow Stock Consumption'),
+	// 	description: __('Check this if the Clinical Procedure utilises consumables. Click ') + "<a href='https://frappehealth.com/docs/v13/user/manual/en/healthcare/clinical_procedure_template#22-manage-procedure-consumables' target='_blank'>here</a>" + __(' to know more')
+	// },
 	{
 		fieldname: 'medical_department',
 		title: __('Medical Department'),

@@ -13,24 +13,24 @@ from frappe.utils import today
 
 
 class ClinicalProcedureTemplate(Document):
-	def before_insert(self):
-		if self.link_existing_item and self.item:
-			price_list = frappe.db.get_all(
-				"Item Price", {"item_code": self.item}, ["price_list_rate"], order_by="valid_from desc"
-			)
-			if price_list:
-				self.rate = price_list[0].get("price_list_rate")
+	# def before_insert(self):
+	# 	if self.link_existing_item and self.item:
+	# 		price_list = frappe.db.get_all(
+	# 			"Item Price", {"item_code": self.item}, ["price_list_rate"], order_by="valid_from desc"
+	# 		)
+	# 		if price_list:
+	# 			self.rate = price_list[0].get("price_list_rate")
 
-	def validate(self):
-		self.enable_disable_item()
+	# def validate(self):
+	# 	self.enable_disable_item()
 
-	def after_insert(self):
-		if not self.link_existing_item:
-			create_item_from_template(self)
+	# def after_insert(self):
+	# 	if not self.link_existing_item:
+	# 		create_item_from_template(self)
 
-	def on_update(self):
-		if self.change_in_item:
-			update_item_and_item_price(self)
+	# def on_update(self):
+	# 	if self.change_in_item:
+	# 		update_item_and_item_price(self)
 
 	def enable_disable_item(self):
 		if self.is_billable:
