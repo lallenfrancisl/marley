@@ -193,11 +193,11 @@
    "permlevel": 2
   },
   {
+   "default": "0",
    "fieldname": "expected_length_of_stay",
    "fieldtype": "Int",
    "hidden": 1,
    "label": "Expected Length of Stay",
-   "mandatory_depends_on": "eval:!doc.admission_encounter;",
    "set_only_once": 1
   },
   {
@@ -233,9 +233,8 @@
   },
   {
    "fieldname": "chief_complaint",
-   "fieldtype": "Table MultiSelect",
+   "fieldtype": "Data",
    "label": "Chief Complaint",
-   "options": "Patient Encounter Symptom",
    "permlevel": 1
   },
   {
@@ -451,7 +450,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-02 06:53:41.272206",
+ "modified": "2025-03-02 08:02:23.372519",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
