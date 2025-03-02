@@ -20,7 +20,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Masters",
+   "label": "Places",
    "link_count": 0,
    "onboard": 0,
    "type": "Card Break"
@@ -663,7 +663,7 @@
    "type": "Link"
   },
   {
-   "hidden": 0,
+   "hidden": 1,
    "is_query_report": 0,
    "label": "Orders",
    "link_count": 2,
@@ -671,7 +671,7 @@
    "type": "Card Break"
   },
   {
-   "hidden": 0,
+   "hidden": 1,
    "is_query_report": 0,
    "label": "Service Request",
    "link_count": 0,
@@ -681,7 +681,7 @@
    "type": "Link"
   },
   {
-   "hidden": 0,
+   "hidden": 1,
    "is_query_report": 0,
    "label": "Medication Request",
    "link_count": 0,
