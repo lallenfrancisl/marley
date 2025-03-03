@@ -102,8 +102,7 @@
    "fieldtype": "Small Text",
    "ignore_xss_filter": 1,
    "label": "Description",
-   "no_copy": 1,
-   "reqd": 1
+   "no_copy": 1
   },
   {
    "default": "0",
@@ -263,7 +262,7 @@
   }
  ],
  "links": [],
- "modified": "2025-03-02 08:28:32.433438",
+ "modified": "2025-03-04 02:29:42.089470",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure Template",
