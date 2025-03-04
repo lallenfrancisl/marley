@@ -345,7 +345,7 @@
    "fieldname": "company",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Company",
+   "label": "Hospital",
    "options": "Company"
   },
   {
@@ -450,7 +450,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-02 08:02:23.372519",
+ "modified": "2025-03-04 18:42:41.732836",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",

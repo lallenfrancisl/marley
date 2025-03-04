@@ -23,6 +23,9 @@ frappe.ui.form.on('Inpatient Record', {
 			};
 		});
 
+		frm.set_value("medical_department", healthcare.utils.get_default_department())
+		frm.set_value("admission_service_unit_type", healthcare.utils.get_default_service_unit_type())
+
 		frm.set_query('admission_service_unit', function() {
 			return {
 				filters: {
