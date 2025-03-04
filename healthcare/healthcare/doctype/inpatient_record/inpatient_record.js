@@ -1,6 +1,8 @@
 // Copyright (c) 2018, Frappe Technologies Pvt. Ltd. and contributors
 // For license information, please see license.txt
 
+frappe.provide("healthcare")
+
 frappe.ui.form.on('Inpatient Record', {
 	setup: function(frm) {
 		frm.get_field('drug_prescription').grid.editable_fields = [
@@ -83,7 +85,7 @@ let discharge_patient = function(frm) {
 };
 
 let admit_patient_dialog = async function(frm) {
-	const default_service_unit = await get_default_service_unit()
+	const default_service_unit = await healthcare.utils.get_default_service_unit()
 
 	let dialog = new frappe.ui.Dialog({
 		title: 'Admit Patient',
@@ -330,18 +332,18 @@ let cancel_ip_order = function(frm) {
 	}, __('Reason for Cancellation'), __('Submit'));
 }
 
-async function get_default_service_unit() {
-	try {
-		const unit = await frappe.db.get_doc(
-			'Healthcare Service Unit',
-			null,
-			{
-				healthcare_service_unit_name: 'Unit 1',
-			}
-		)
-
-		return unit?.name || null
-	} catch {
-		return null	
-	}
-}
+// async function get_default_service_unit() {
+// 	try {
+// 		const unit = await frappe.db.get_doc(
+// 			'Healthcare Service Unit',
+// 			null,
+// 			{
+// 				healthcare_service_unit_name: 'Unit 1',
+// 			}
+// 		)
+//
+// 		return unit?.name || null
+// 	} catch {
+// 		return null	
+// 	}
+// }

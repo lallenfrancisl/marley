@@ -1,6 +1,8 @@
 // Copyright (c) 2017, earthians and contributors
 // For license information, please see license.txt
 
+frappe.provide("healthcare")
+
 frappe.ui.form.on('Clinical Procedure Template', {
 	template: function (frm) {
 		// if (!frm.doc.item_code)
@@ -68,6 +70,8 @@ frappe.ui.form.on('Clinical Procedure Template', {
 				}
 			};
 		});
+
+		frm.set_value("medical_department", healthcare.utils.get_default_department())
 	},
 
 	link_existing_item: function (frm) {
