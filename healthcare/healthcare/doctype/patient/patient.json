@@ -146,9 +146,7 @@
    "fieldtype": "HTML",
    "label": "Age",
    "no_copy": 1,
-   "print_hide": 1,
-   "read_only": 1,
-   "report_hide": 1
+   "read_only": 1
   },
   {
    "fieldname": "status",
@@ -504,7 +502,7 @@
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2025-03-02 02:21:45.014878",
+ "modified": "2025-03-06 03:01:01.640309",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",

@@ -263,10 +263,10 @@ var schedule_discharge = function(frm) {
 				fieldname: 'followup_date'
 			},
 			{
-				fieldtype: 'Column Break'
+				fieldtype: 'Section Break'
 			},
 			{
-				fieldtype: 'Small Text',
+				fieldtype: 'Text',
 				label: 'Discharge Instructions',
 				fieldname: 'discharge_instructions'
 			},

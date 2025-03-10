@@ -234,7 +234,7 @@
   {
    "fieldname": "chief_complaint",
    "fieldtype": "Data",
-   "label": "Chief Complaint",
+   "label": "Presenting Complaints",
    "permlevel": 1
   },
   {
@@ -382,7 +382,7 @@
   },
   {
    "fieldname": "discharge_instructions",
-   "fieldtype": "Small Text",
+   "fieldtype": "Text Editor",
    "label": "Discharge Instructions"
   },
   {
@@ -450,7 +450,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-04 18:42:41.732836",
+ "modified": "2025-03-06 04:47:03.041055",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
