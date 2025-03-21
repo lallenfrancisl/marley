@@ -748,10 +748,6 @@
   {
    "label": "Open Appointments",
    "number_card_name": "Open Appointments"
-  },
-  {
-   "label": "Appointments to Bill",
-   "number_card_name": "Appointments to Bill"
   }
  ],
  "owner": "Administrator",
