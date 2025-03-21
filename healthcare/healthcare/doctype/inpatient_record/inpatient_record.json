@@ -39,10 +39,10 @@
   "chief_complaint",
   "column_break_29",
   "diagnosis",
-  "medication_section",
-  "drug_prescription",
   "investigations_section",
   "lab_test_prescription",
+  "medication_section",
+  "drug_prescription",
   "procedures_section",
   "procedure_prescription",
   "rehabilitation_section",
@@ -452,7 +452,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-21 20:51:28.317342",
+ "modified": "2025-03-22 01:32:57.559872",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
