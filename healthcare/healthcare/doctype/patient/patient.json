@@ -366,6 +366,7 @@
    "read_only": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "last_name",
    "fieldtype": "Data",
    "label": "Last Name",
@@ -503,7 +504,7 @@
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2025-03-21 19:43:20.702220",
+ "modified": "2025-03-21 20:53:14.076578",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",
