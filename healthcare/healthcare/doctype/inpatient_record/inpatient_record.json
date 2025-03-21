@@ -139,6 +139,7 @@
   {
    "fieldname": "medical_department",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Medical Department",
    "mandatory_depends_on": "eval:!doc.admission_encounter;",
    "options": "Medical Department",
@@ -154,6 +155,7 @@
   {
    "fieldname": "secondary_practitioner",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Healthcare Practitioner (Secondary)",
    "options": "Healthcare Practitioner"
   },
@@ -208,7 +210,6 @@
    "read_only": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "references",
    "fieldtype": "Section Break",
    "label": "Admission Order Details"
@@ -240,6 +241,7 @@
   {
    "fieldname": "admission_instruction",
    "fieldtype": "Small Text",
+   "hidden": 1,
    "label": "Admission Instructions",
    "set_only_once": 1
   },
@@ -313,6 +315,7 @@
   {
    "fieldname": "admission_service_unit_type",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Admission Service Unit Type",
    "mandatory_depends_on": "eval:!doc.admission_encounter;",
    "options": "Healthcare Service Unit Type",
@@ -452,7 +455,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-22 01:32:57.559872",
+ "modified": "2025-03-22 01:41:39.086731",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
