@@ -477,7 +477,8 @@
    "fieldname": "uid",
    "fieldtype": "Data",
    "in_standard_filter": 1,
-   "label": "Identification Number (UID)",
+   "label": "ED Number",
+   "reqd": 1,
    "unique": 1
   },
   {
@@ -502,7 +503,7 @@
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2025-03-06 03:01:01.640309",
+ "modified": "2025-03-21 19:43:20.702220",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",
