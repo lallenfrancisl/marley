@@ -6,8 +6,7 @@ frappe.provide("healthcare")
 frappe.ui.form.on('Inpatient Record', {
 	setup: function(frm) {
 		frm.get_field('drug_prescription').grid.editable_fields = [
-			{fieldname: 'drug_code', columns: 2},
-			{fieldname: 'drug_name', columns: 2},
+			{fieldname: 'drug_name', columns: 3},
 			{fieldname: 'dosage', columns: 2},
 			{fieldname: 'period', columns: 2},
 			{fieldname: 'dosage_form', columns: 2}
