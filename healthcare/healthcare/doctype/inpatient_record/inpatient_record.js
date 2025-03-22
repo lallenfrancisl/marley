@@ -12,6 +12,11 @@ frappe.ui.form.on('Inpatient Record', {
 			{fieldname: 'dosage_form', columns: 2}
 		];
 	},
+	medico_legal_case: function(frm) {
+		if (frm.doc.medico_legal_case === 0) {
+			frm.set_value("mlr_number", "")
+		}
+	},
 	refresh: function(frm) {
 		frm.set_query('admission_service_unit_type', function() {
 			return {

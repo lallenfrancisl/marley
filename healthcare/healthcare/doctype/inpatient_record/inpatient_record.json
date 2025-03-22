@@ -8,6 +8,7 @@
  "field_order": [
   "section_break_1",
   "naming_series",
+  "uid",
   "patient",
   "patient_name",
   "gender",
@@ -23,6 +24,8 @@
   "admitted_datetime",
   "expected_discharge",
   "references",
+  "cr_number",
+  "primary_practitioner",
   "admission_encounter",
   "admission_practitioner",
   "medical_department",
@@ -32,13 +35,31 @@
   "discharge_nursing_checklist_template",
   "expected_length_of_stay",
   "cb_admission",
-  "primary_practitioner",
+  "medico_legal_case",
+  "mlr_number",
+  "police_informed",
+  "rsa",
   "secondary_practitioner",
   "admission_instruction",
   "encounter_details_section",
   "chief_complaint",
   "column_break_29",
   "diagnosis",
+  "medical_history_section",
+  "column_break_azja",
+  "occupation",
+  "allergies",
+  "medication",
+  "tobacco_past_use",
+  "tobacco_current_use",
+  "alcohol_past_use",
+  "alcohol_current_use",
+  "column_break_crax",
+  "marital_status",
+  "medical_history",
+  "surgical_history",
+  "surrounding_factors",
+  "other_risk_factors",
   "investigations_section",
   "lab_test_prescription",
   "medication_section",
@@ -88,8 +109,8 @@
    "fetch_from": "patient.patient_name",
    "fieldname": "patient_name",
    "fieldtype": "Data",
-   "label": "Patient Name",
-   "read_only": 1
+   "hidden": 1,
+   "label": "Patient Name"
   },
   {
    "fetch_from": "patient.sex",
@@ -210,6 +231,7 @@
    "read_only": 1
   },
   {
+   "collapsible": 1,
    "fieldname": "references",
    "fieldtype": "Section Break",
    "label": "Admission Order Details"
@@ -446,6 +468,119 @@
    "label": "Admission Service Unit",
    "options": "Healthcare Service Unit",
    "set_only_once": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "medical_history_section",
+   "fieldtype": "Section Break",
+   "label": "Medical History"
+  },
+  {
+   "fieldname": "medical_history",
+   "fieldtype": "Small Text",
+   "label": "Medical History"
+  },
+  {
+   "fieldname": "column_break_azja",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "occupation",
+   "fieldtype": "Data",
+   "label": "Occupation"
+  },
+  {
+   "fieldname": "allergies",
+   "fieldtype": "Small Text",
+   "label": "Allergies"
+  },
+  {
+   "fieldname": "medication",
+   "fieldtype": "Small Text",
+   "label": "Medication"
+  },
+  {
+   "fieldname": "tobacco_past_use",
+   "fieldtype": "Data",
+   "label": "Tobacco Consumption (Past)"
+  },
+  {
+   "fieldname": "tobacco_current_use",
+   "fieldtype": "Data",
+   "label": "Tobacco Consumption (Present)"
+  },
+  {
+   "fieldname": "alcohol_past_use",
+   "fieldtype": "Data",
+   "label": "Alcohol Consumption (Past)"
+  },
+  {
+   "fieldname": "alcohol_current_use",
+   "fieldtype": "Data",
+   "label": "Alcohol Consumption (Present)"
+  },
+  {
+   "fieldname": "column_break_crax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "marital_status",
+   "fieldtype": "Select",
+   "label": "Marital Status",
+   "options": "\nSingle\nMarried\nDivorced\nWidow"
+  },
+  {
+   "fieldname": "surgical_history",
+   "fieldtype": "Small Text",
+   "label": "Surgical History"
+  },
+  {
+   "fieldname": "surrounding_factors",
+   "fieldtype": "Small Text",
+   "label": "Occupational Hazards and Environmental Factors"
+  },
+  {
+   "fieldname": "other_risk_factors",
+   "fieldtype": "Small Text",
+   "label": "Other Risk Factors"
+  },
+  {
+   "default": "0",
+   "fieldname": "medico_legal_case",
+   "fieldtype": "Check",
+   "label": "Medico Legal Case"
+  },
+  {
+   "depends_on": "eval:doc.medico_legal_case",
+   "fieldname": "mlr_number",
+   "fieldtype": "Data",
+   "label": "MLR Number",
+   "mandatory_depends_on": "eval:doc.medico_legal_case === 1"
+  },
+  {
+   "default": "0",
+   "fieldname": "police_informed",
+   "fieldtype": "Check",
+   "label": "Police Informed"
+  },
+  {
+   "default": "0",
+   "fieldname": "rsa",
+   "fieldtype": "Check",
+   "label": "RSA"
+  },
+  {
+   "fetch_from": "patient.uid",
+   "fieldname": "uid",
+   "fieldtype": "Data",
+   "label": "ED Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cr_number",
+   "fieldtype": "Data",
+   "label": "CR Number",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -455,7 +590,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-22 01:41:39.086731",
+ "modified": "2025-03-22 19:47:06.698101",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
