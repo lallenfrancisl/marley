@@ -67,6 +67,8 @@ class Patient(Document):
 		if not self.user_id and self.email and self.invite_user:
 			self.create_website_user()
 
+		self.sync_inpatient_records()
+
 	def load_dashboard_info(self):
 		if self.customer:
 			info = get_dashboard_info("Customer", self.customer, None)
@@ -291,6 +293,33 @@ class Patient(Document):
 			}
 		)
 		self.notify_update()
+	
+	def sync_inpatient_records(self):
+		records = frappe.db.get_all(
+			"Inpatient Record",
+			{
+				"patient": self.name
+			},
+		)
+
+		print("length: ", len(records))
+
+		for record in records:
+			# Copy medical history section
+			record.occupation = self.occupation
+			record.marital_status = self.marital_status
+			record.allergies = self.allergies
+			record.medical_history = self.medical_history
+			record.medication = self.medication
+			record.surgical_history = self.surgical_history
+			record.tobacco_past_use = self.tobacco_past_use
+			record.tobacco_current_use = self.tobacco_current_use
+			record.alcohol_past_use = self.alcohol_past_use
+			record.alcohol_current_use = self.alcohol_current_use
+			record.surrounding_factors = self.surrounding_factors
+			record.other_risk_factors = self.other_risk_factors
+
+			frappe.db.set_value("Inpatient Record", record.name, record)
 
 
 def create_customer(doc):

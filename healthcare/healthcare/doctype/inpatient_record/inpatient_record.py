@@ -151,6 +151,20 @@ class InpatientRecord(Document):
 		patient.discharge_datetime = self.discharge_datetime
 		patient.discharge_practitioner = self.discharge_practitioner
 
+		# Copy medical history section
+		patient.occupation = self.occupation
+		patient.marital_status = self.marital_status
+		patient.allergies = self.allergies
+		patient.medical_history = self.medical_history
+		patient.medication = self.medication
+		patient.surgical_history = self.surgical_history
+		patient.tobacco_past_use = self.tobacco_past_use
+		patient.tobacco_current_use = self.tobacco_current_use
+		patient.alcohol_past_use = self.alcohol_past_use
+		patient.alcohol_current_use = self.alcohol_current_use
+		patient.surrounding_factors = self.surrounding_factors
+		patient.other_risk_factors = self.other_risk_factors
+
 		patient.save()
 
 
