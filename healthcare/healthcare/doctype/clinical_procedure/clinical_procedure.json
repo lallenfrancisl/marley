@@ -337,6 +337,7 @@
   {
    "fieldname": "anesthesia_type",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Anesthesia Type",
    "options": "Anesthesia Type"
   }
@@ -348,7 +349,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-24 18:00:11.719086",
+ "modified": "2025-03-24 18:25:42.583570",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",
