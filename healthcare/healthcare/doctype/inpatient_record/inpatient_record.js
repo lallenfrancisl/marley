@@ -12,11 +12,6 @@ frappe.ui.form.on('Inpatient Record', {
 			{fieldname: 'dosage_form', columns: 2}
 		];
 	},
-	medico_legal_case: function(frm) {
-		if (frm.doc.medico_legal_case === 0) {
-			frm.set_value("mlr_number", "")
-		}
-	},
 	refresh: function(frm) {
 		frm.set_query('admission_service_unit_type', function() {
 			return {
@@ -78,11 +73,90 @@ frappe.ui.form.on('Inpatient Record', {
 				"reference_name": frm.doc.name}
 					frappe.new_doc("Clinical Note");
 		},__('Create'));
+
+		cleanup_procedures_table()
+	},
+	procedure_prescription_on_form_rendered: function() {
+		cleanup_procedures_table()
 	},
 	btn_transfer: function(frm) {
 		transfer_patient_dialog(frm);
-	}
+	},
+	medico_legal_case: function(frm) {
+		if (frm.doc.medico_legal_case === 0) {
+			frm.set_value("mlr_number", "")
+		}
+	},
+	btn_add_procedure: function(frm) {
+		add_procedure_dialog(frm)
+	},
 });
+
+async function add_procedure_dialog(frm){
+	const dialog = new frappe.ui.Dialog({
+		title: "Add Procedure",
+		width: 100,
+		fields: [
+			{
+				fieldtype: 'Link',
+				label: 'Clinical Procedure',
+				fieldname: 'clinical_procedure_template',
+				options: 'Clinical Procedure Template',
+				reqd: 1,
+			},
+			{
+				fieldtype: 'Date',
+				label: 'Start Date',
+				fieldname: 'start_date',
+			},
+			{
+				fieldtype: 'Time',
+				label: 'Start Time',
+				fieldname: 'start_time',
+			},
+			{
+				fieldtype: 'Link',
+				label: 'Healthcare Practitioner',
+				options: 'Healthcare Practitioner',
+				fieldname: 'practitioner',
+			},
+			{
+				fieldtype: 'Link',
+				label: 'Operating Team',
+				options: 'Operating Team',
+				fieldname: 'team',
+			},
+			{
+				fieldtype: 'Link',
+				label: 'Scrub Nurse',
+				options: 'Healthcare Practitioner',
+				fieldname: 'scrub_nurse',
+			},
+			{
+				fieldtype: 'Link',
+				label: 'Anesthesia Type',
+				options: 'Anesthesia Type',
+				fieldname: 'anesthesia_type',
+			},
+		],
+		primary_action: function() {
+			const row = frappe.model.add_child(frm.doc, 'Procedure Prescription', 'procedure_prescription');
+			row.procedure = dialog.get_value('clinical_procedure_template');
+			row.team = dialog.get_value('team');
+			row.healthcare_practitioner = dialog.get_value('practitioner');
+			row.scrub_nurse = dialog.get_value('scrub_nurse');
+			row.date = dialog.get_value('start_date');
+			row.time = dialog.get_value('start_time');
+			row.anesthesia_type = dialog.get_value('anesthesia_type');
+
+			frm.refresh_field('procedure_prescription');
+
+			dialog.hide();
+		},
+	});
+
+	dialog.show();
+}
 
 let discharge_patient = function(frm) {
 	frappe.call({
@@ -346,18 +420,27 @@ let cancel_ip_order = function(frm) {
 	}, __('Reason for Cancellation'), __('Submit'));
 }
 
-// async function get_default_service_unit() {
-// 	try {
-// 		const unit = await frappe.db.get_doc(
-// 			'Healthcare Service Unit',
-// 			null,
-// 			{
-// 				healthcare_service_unit_name: 'Unit 1',
-// 			}
-// 		)
-//
-// 		return unit?.name || null
-// 	} catch {
-// 		return null	
-// 	}
-// }
+function cleanup_procedures_table() {
+	const wrapper = document.querySelector('div[data-fieldname="procedures_section"]')
+
+	// Hide the unwanted buttons in the popup and table
+	const elements = [
+		'.grid-insert-row-below',
+		'.grid-insert-row',
+		'.grid-append-row',
+		'.grid-duplicate-row',
+		'.grid-add-row',
+	] 
+
+	if (wrapper) {
+		for (const el of elements) {
+			const htmlEls = wrapper.querySelectorAll(el)
+			for (const htmlEl of htmlEls) {
+				if (htmlEl) {
+					htmlEl.style.display = 'none'
+				}
+			}
+		}
+	}
+}
+

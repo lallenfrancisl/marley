@@ -2,6 +2,7 @@
  "actions": [],
  "autoname": "naming_series:",
  "creation": "2017-04-07 12:52:43.542429",
+ "default_view": "Report",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -22,6 +23,9 @@
   "column_break_7",
   "status",
   "practitioner",
+  "team",
+  "scrub_nurse",
+  "anesthesia_type",
   "practitioner_name",
   "medical_department",
   "service_unit",
@@ -64,6 +68,7 @@
   {
    "fieldname": "appointment",
    "fieldtype": "Link",
+   "hidden": 1,
    "in_standard_filter": 1,
    "label": "Appointment",
    "options": "Patient Appointment",
@@ -100,6 +105,7 @@
    "read_only": 1
   },
   {
+   "default": "General and Minimal Access Surgery",
    "fieldname": "medical_department",
    "fieldtype": "Link",
    "in_standard_filter": 1,
@@ -126,6 +132,7 @@
    "reqd": 1
   },
   {
+   "default": "Unit 1",
    "fieldname": "service_unit",
    "fieldtype": "Link",
    "label": "Service Unit",
@@ -166,9 +173,8 @@
   },
   {
    "fieldname": "notes",
-   "fieldtype": "Small Text",
-   "label": "Notes",
-   "set_only_once": 1
+   "fieldtype": "Long Text",
+   "label": "OT Findings"
   },
   {
    "fieldname": "company",
@@ -242,6 +248,7 @@
    "collapsible_depends_on": "consume_stock",
    "fieldname": "consumables_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Consumables"
   },
   {
@@ -250,7 +257,8 @@
   },
   {
    "fieldname": "section_break_24",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "column_break_30",
@@ -264,17 +272,20 @@
    "collapsible": 1,
    "fieldname": "sb_refs",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "More Information"
   },
   {
    "fieldname": "patient_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Patient Name",
    "read_only": 1
   },
   {
    "fieldname": "practitioner_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Practitioner Name",
    "read_only": 1
@@ -293,6 +304,7 @@
    "collapsible": 1,
    "fieldname": "medical_coding_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Medical Coding"
   },
   {
@@ -309,6 +321,24 @@
    "options": "Service Request",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "team",
+   "fieldtype": "Link",
+   "label": "Team",
+   "options": "Operating Team"
+  },
+  {
+   "fieldname": "scrub_nurse",
+   "fieldtype": "Link",
+   "label": "Scrub Nurse",
+   "options": "Healthcare Practitioner"
+  },
+  {
+   "fieldname": "anesthesia_type",
+   "fieldtype": "Link",
+   "label": "Anesthesia Type",
+   "options": "Anesthesia Type"
   }
  ],
  "is_submittable": 1,
@@ -318,7 +348,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2023-04-06 04:08:43.588359",
+ "modified": "2025-03-24 18:00:11.719086",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",
@@ -354,6 +384,7 @@
   }
  ],
  "restrict_to_domain": "Healthcare",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

@@ -9,11 +9,10 @@ import frappe
 from frappe import _
 from frappe.desk.reportview import get_match_cond
 from frappe.model.document import Document
-from frappe.utils import get_datetime, get_link_to_form, getdate, now_datetime, today
+from frappe.utils import get_datetime, get_time, get_link_to_form, getdate, now_datetime, today
 
 from healthcare.healthcare.doctype.nursing_task.nursing_task import NursingTask
 from healthcare.healthcare.utils import validate_nursing_tasks
-
 
 class InpatientRecord(Document):
 	def after_insert(self):
@@ -50,6 +49,9 @@ class InpatientRecord(Document):
 				template=self.admission_nursing_checklist_template,
 				doc=self,
 			)
+	
+	def on_update(self):
+		self.sync_clinical_procedures()
 
 	def validate(self):
 		self.validate_dates()
@@ -106,6 +108,35 @@ class InpatientRecord(Document):
 			patient_leave_service_unit(self, check_in, leave_from)
 		if service_unit:
 			transfer_patient(self, service_unit, check_in)
+	
+	def sync_clinical_procedures(self):
+		if not self.procedure_prescription:
+			return
+
+		for proc in self.procedure_prescription:
+			if proc.clinical_procedure:
+				doc = frappe.get_doc("Clinical Procedure", proc.clinical_procedure)
+			else:
+				doc = frappe.new_doc("Clinical Procedure")
+
+			doc.start_date = getdate(proc.date)
+			doc.start_time = get_time(proc.time)
+			doc.company = self.company
+			doc.procedure_template = proc.procedure
+			doc.title = f"{self.patient_name} - {proc.procedure}"
+			doc.patient = self.patient
+			doc.inpatient_record = self
+			doc.practitioner = proc.healthcare_practitioner
+			doc.team = proc.team
+			doc.service_unit  = self.inpatient_occupancies[0] or None
+			doc.medical_department = self.medical_department
+			doc.scrub_nurse = proc.scrub_nurse
+			doc.anesthesia_type = proc.anesthesia_type
+
+			doc.save()
+
+			proc.clinical_procedure = doc.name
+			proc.save()
 
 
 @frappe.whitelist()

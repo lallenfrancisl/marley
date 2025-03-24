@@ -69,6 +69,7 @@
    "no_copy": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "last_name",
    "fieldtype": "Data",
    "label": "Last Name",
@@ -357,7 +358,7 @@
  ],
  "image_field": "image",
  "links": [],
- "modified": "2025-03-01 17:12:39.114342",
+ "modified": "2025-03-24 14:46:52.595768",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Healthcare Practitioner",

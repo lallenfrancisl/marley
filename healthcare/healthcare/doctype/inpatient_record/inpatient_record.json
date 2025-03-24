@@ -66,6 +66,7 @@
   "drug_prescription",
   "procedures_section",
   "procedure_prescription",
+  "btn_add_procedure",
   "rehabilitation_section",
   "therapy_plan",
   "therapies",
@@ -170,7 +171,7 @@
    "fieldname": "primary_practitioner",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Healthcare Practitioner (Primary)",
+   "label": "File Duty",
    "mandatory_depends_on": "eval:!doc.admission_encounter;",
    "options": "Healthcare Practitioner"
   },
@@ -326,7 +327,8 @@
    "fieldname": "procedure_prescription",
    "fieldtype": "Table",
    "options": "Procedure Prescription",
-   "permlevel": 1
+   "permlevel": 1,
+   "placeholder": "Add procedures to see them here"
   },
   {
    "depends_on": "eval:(doc.status != \"Admission Scheduled\")",
@@ -585,6 +587,11 @@
    "in_standard_filter": 1,
    "label": "CR Number",
    "reqd": 1
+  },
+  {
+   "fieldname": "btn_add_procedure",
+   "fieldtype": "Button",
+   "label": "Add Procedure"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -594,7 +601,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-23 03:25:56.164599",
+ "modified": "2025-03-24 15:31:23.245666",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",

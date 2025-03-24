@@ -196,17 +196,20 @@
    "collapsible": 1,
    "fieldname": "codification",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Medical Coding"
   },
   {
    "fieldname": "pre_op_nursing_checklist_template",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Pre-op Nursing Checklist Template",
    "options": "Nursing Checklist Template"
   },
   {
    "fieldname": "post_op_nursing_checklist_template",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Post-op Nursing Checklist Template",
    "options": "Nursing Checklist Template"
   },
@@ -240,6 +243,7 @@
   {
    "fieldname": "sample_collection_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Sample Collection"
   },
   {
@@ -262,7 +266,7 @@
   }
  ],
  "links": [],
- "modified": "2025-03-04 02:29:42.089470",
+ "modified": "2025-03-24 16:17:31.365669",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure Template",
