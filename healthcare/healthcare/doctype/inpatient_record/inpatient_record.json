@@ -10,6 +10,7 @@
   "naming_series",
   "uid",
   "patient",
+  "abssby",
   "patient_name",
   "gender",
   "blood_group",
@@ -416,7 +417,6 @@
   {
    "fieldname": "discharge_ordered_date",
    "fieldtype": "Date",
-   "in_list_view": 1,
    "label": "Discharge Ordered Date",
    "read_only": 1
   },
@@ -592,6 +592,13 @@
    "fieldname": "btn_add_procedure",
    "fieldtype": "Button",
    "label": "Add Procedure"
+  },
+  {
+   "fetch_from": "patient.abssby",
+   "fieldname": "abssby",
+   "fieldtype": "Data",
+   "label": "ABSSBY Number",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -601,7 +608,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-24 15:31:23.245666",
+ "modified": "2025-03-24 18:38:36.783477",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",

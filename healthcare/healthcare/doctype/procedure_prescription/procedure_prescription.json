@@ -139,7 +139,6 @@
   {
    "fieldname": "clinical_procedure",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Procedure Details",
    "options": "Clinical Procedure",
    "placeholder": "Autofilled when saved",
@@ -171,13 +170,14 @@
   {
    "fieldname": "anesthesia_type",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Anesthesia Type",
    "options": "Anesthesia Type"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2025-03-24 18:01:24.854379",
+ "modified": "2025-03-24 18:26:19.989079",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Procedure Prescription",
