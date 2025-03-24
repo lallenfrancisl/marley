@@ -172,7 +172,7 @@
    "fieldname": "primary_practitioner",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "File Duty",
+   "label": "Healthcare Practitioner",
    "mandatory_depends_on": "eval:!doc.admission_encounter;",
    "options": "Healthcare Practitioner"
   },
@@ -277,7 +277,7 @@
   {
    "fieldname": "discharge_practitioner",
    "fieldtype": "Link",
-   "label": "Healthcare Practitioner",
+   "label": "File Duty",
    "options": "Healthcare Practitioner",
    "read_only": 1
   },
@@ -608,7 +608,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-24 18:38:36.783477",
+ "modified": "2025-03-24 19:07:54.070877",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",

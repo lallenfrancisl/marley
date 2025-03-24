@@ -332,13 +332,13 @@ var schedule_discharge = function(frm) {
 		fields: [
 			{
 				fieldtype: 'Link',
-				label: 'Discharge Practitioner',
+				label: 'File Duty',
 				fieldname: 'discharge_practitioner',
 				options: 'Healthcare Practitioner'
 			},
 			{
 				fieldtype: 'Datetime',
-				label: 'Discharge Ordered DateTime',
+				label: 'Date Of Discharge',
 				fieldname: 'discharge_ordered_datetime',
 				default: frappe.datetime.now_datetime()
 			},
