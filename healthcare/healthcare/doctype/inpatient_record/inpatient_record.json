@@ -169,6 +169,7 @@
   {
    "fieldname": "primary_practitioner",
    "fieldtype": "Link",
+   "in_standard_filter": 1,
    "label": "Healthcare Practitioner (Primary)",
    "mandatory_depends_on": "eval:!doc.admission_encounter;",
    "options": "Healthcare Practitioner"
@@ -197,7 +198,7 @@
    "default": "Today",
    "fieldname": "scheduled_date",
    "fieldtype": "Date",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Admission Schedule Date",
    "read_only": 1,
    "reqd": 1
@@ -209,10 +210,11 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:!doc.__islocal",
    "fieldname": "admitted_datetime",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Admitted Datetime",
+   "label": "Date Of Admission",
    "permlevel": 2
   },
   {
@@ -226,7 +228,6 @@
   {
    "fieldname": "expected_discharge",
    "fieldtype": "Date",
-   "in_list_view": 1,
    "label": "Expected Discharge",
    "read_only": 1
   },
@@ -370,7 +371,6 @@
    "fetch_from": "admission_encounter.company",
    "fieldname": "company",
    "fieldtype": "Link",
-   "in_standard_filter": 1,
    "label": "Hospital",
    "options": "Company"
   },
@@ -573,12 +573,16 @@
    "fetch_from": "patient.uid",
    "fieldname": "uid",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "ED Number",
    "read_only": 1
   },
   {
    "fieldname": "cr_number",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "CR Number",
    "reqd": 1
   }
@@ -590,7 +594,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-22 19:47:06.698101",
+ "modified": "2025-03-23 03:25:56.164599",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
