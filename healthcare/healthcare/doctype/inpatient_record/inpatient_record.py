@@ -52,13 +52,16 @@ class InpatientRecord(Document):
 	
 	def on_update(self):
 		self.sync_clinical_procedures()
+		self.sync_patient()
 
 	def validate(self):
 		self.validate_dates()
 		self.validate_already_scheduled_or_admitted()
 		if self.status in ["Discharged", "Cancelled"]:
 			frappe.db.set_value(
-				"Patient", self.patient, {"inpatient_status": None, "inpatient_record": None}
+				"Patient", self.patient, {
+					"inpatient_status": "Recovered", "inpatient_record": None,
+				}
 			)
 
 	def validate_dates(self):
@@ -138,6 +141,18 @@ class InpatientRecord(Document):
 			proc.clinical_procedure = doc.name
 			proc.save()
 
+	def sync_patient(self):
+		if not self.patient:
+			return
+
+		patient = frappe.get_doc("Patient", self.patient)
+
+		patient.admitted_datetime = self.admitted_datetime
+		patient.discharge_datetime = self.discharge_datetime
+		patient.discharge_practitioner = self.discharge_practitioner
+
+		patient.save()
+
 
 @frappe.whitelist()
 def schedule_inpatient(args):
@@ -192,6 +207,15 @@ def schedule_inpatient(args):
 	inpatient_record.status = "Admission Scheduled"
 	inpatient_record.save(ignore_permissions=True)
 
+	frappe.db.set_value(
+		"Patient",
+		inpatient_record.patient,
+		{
+			"inpatient_status": inpatient_record.status,
+			"inpatient_record": inpatient_record.name,
+		},
+	)
+
 
 @frappe.whitelist()
 def schedule_discharge(args):
@@ -209,8 +233,14 @@ def schedule_discharge(args):
 		inpatient_record.save(ignore_permissions=True)
 
 		frappe.db.set_value(
-			"Patient", discharge_order["patient"], "inpatient_status", inpatient_record.status
+			"Patient",
+			discharge_order["patient"],
+			{
+				"inpatient_status": inpatient_record.status,
+				"discharge_practitioner": inpatient_record.discharge_practitioner,
+			}
 		)
+
 		if inpatient_record.discharge_encounter:
 			frappe.db.set_value(
 				"Patient Encounter",
@@ -392,7 +422,10 @@ def admit_patient(inpatient_record, service_unit, check_in, expected_discharge=N
 	frappe.db.set_value(
 		"Patient",
 		inpatient_record.patient,
-		{"inpatient_status": "Admitted", "inpatient_record": inpatient_record.name},
+		{
+			"inpatient_status": "Admitted",
+			"inpatient_record": inpatient_record.name,	
+		},
 	)
 
 

@@ -5,6 +5,10 @@ frappe.listview_settings['Inpatient Record'] = {
     refresh: function() {
     	// Hide name filter from Listview
     	$("div[data-fieldname = name]").hide();
+
+        $("div.level-right").each(function() {
+            $(this).hide();
+        })
     },
     // Hide name from Listview
 	hide_name_column: true,
