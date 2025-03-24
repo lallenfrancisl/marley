@@ -164,7 +164,7 @@
    "options": "Sample Collection"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "invoiced",
    "fieldtype": "Check",
    "label": "Invoiced",
@@ -349,7 +349,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-24 18:25:42.583570",
+ "modified": "2025-03-25 01:58:17.217061",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",
