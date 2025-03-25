@@ -4,14 +4,6 @@
 frappe.provide("healthcare")
 
 frappe.ui.form.on('Inpatient Record', {
-	setup: function(frm) {
-		frm.get_field('drug_prescription').grid.editable_fields = [
-			{fieldname: 'drug_name', columns: 3},
-			{fieldname: 'dosage', columns: 2},
-			{fieldname: 'period', columns: 2},
-			{fieldname: 'dosage_form', columns: 2}
-		];
-	},
 	refresh: async function(frm) {
 		if (!frm.doc.admission_service_unit_type) {
 			frm.doc.admission_service_unit_type = await healthcare.utils.get_default_service_unit_type()
@@ -63,14 +55,22 @@ frappe.ui.form.on('Inpatient Record', {
 					frappe.new_doc("Clinical Note");
 		},__('Create'));
 
-		cleanup_procedures_table()
-		cleanup_blood_tests_table()
+		disable_direct_table_editing("procedures_section")
+		disable_direct_table_editing("blood_tests_section")
+		disable_direct_table_editing("biopsies_section")
+		disable_direct_table_editing("other_tests_section")
 	},
 	procedure_prescription_on_form_rendered: function() {
-		cleanup_procedures_table()
+		disable_direct_table_editing("procedures_section")
 	},
 	blood_tests_on_form_rendered: function() {
-		cleanup_blood_tests_table()
+		disable_direct_table_editing("blood_tests_section")
+	},
+	biopsies_on_form_rendered: function() {
+		disable_direct_table_editing("biopsies_section")
+	},
+	other_tests_on_form_rendered: function() {
+		disable_direct_table_editing("other_tests_section")
 	},
 	btn_transfer: function(frm) {
 		transfer_patient_dialog(frm);
@@ -84,7 +84,13 @@ frappe.ui.form.on('Inpatient Record', {
 		add_procedure_dialog(frm)
 	},
 	btn_add_blood_test(frm) {
-		add_blood_test_dialog(frm)
+		add_test_dialog(frm, 'blood_tests')
+	},
+	btn_add_biopsy(frm) {
+		add_test_dialog(frm, 'biopsies')
+	},
+	btn_add_other_test(frm) {
+		add_test_dialog(frm, 'other_tests')
 	},
     async patient(frm) {
         const patient = await frappe.db.get_doc(
@@ -446,9 +452,9 @@ let cancel_ip_order = function(frm) {
 	}, __('Reason for Cancellation'), __('Submit'));
 }
 
-function add_blood_test_dialog(frm) {
+function add_test_dialog(frm, fieldname) {
 	const dialog = new frappe.ui.Dialog({
-		title: "Add Blood Test",
+		title: "Add Test",
 		width: 100,
 		fields: [
 			{
@@ -475,11 +481,11 @@ function add_blood_test_dialog(frm) {
 				});
 
 
-				const row = frappe.model.add_child(frm.doc, 'Lab Test Recording', 'blood_tests');
+				const row = frappe.model.add_child(frm.doc, 'Lab Test Recording', fieldname);
 				row.inpatient_record = frm.doc.name
 				row.lab_test = result.message.name
 
-				frm.refresh_field('blood_tests');
+				frm.refresh_field(fieldname);
 				await frm.save()
 
 				frappe.set_route(['Form', 'Lab Test', result.message.name])
@@ -496,11 +502,11 @@ function add_blood_test_dialog(frm) {
 	dialog.show()
 }
 
-function cleanup_procedures_table() {
-	const wrapper = document.querySelector('div[data-fieldname="procedures_section"]')
+function disable_direct_table_editing(section_fieldname, class_hide_list) {
+	const wrapper = document.querySelector(`div[data-fieldname="${section_fieldname}"]`)
 
 	// Hide the unwanted buttons in the popup and table
-	const elements = [
+	const elements = class_hide_list || [
 		'.grid-insert-row-below',
 		'.grid-insert-row',
 		'.grid-append-row',

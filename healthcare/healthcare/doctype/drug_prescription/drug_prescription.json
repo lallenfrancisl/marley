@@ -32,6 +32,7 @@
   {
    "fieldname": "drug_code",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "label": "Drug Code",
    "options": "Item"
@@ -41,8 +42,7 @@
    "fieldname": "drug_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Drug Name / Description",
-   "read_only": 1
+   "label": "Drug Name / Description"
   },
   {
    "depends_on": "eval:!doc.dosage_by_interval",
@@ -84,7 +84,6 @@
    "fieldname": "comment",
    "fieldtype": "Small Text",
    "ignore_xss_filter": 1,
-   "in_list_view": 1,
    "label": "Comment"
   },
   {
@@ -93,7 +92,6 @@
    "fetch_if_empty": 1,
    "fieldname": "interval",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Interval",
    "mandatory_depends_on": "eval:doc.dosage_by_interval"
   },
@@ -113,7 +111,6 @@
    "fetch_if_empty": 1,
    "fieldname": "interval_uom",
    "fieldtype": "Select",
-   "in_list_view": 1,
    "label": "Interval UOM",
    "mandatory_depends_on": "eval:doc.dosage_by_interval",
    "options": "\nHour\nDay"
@@ -121,7 +118,6 @@
   {
    "fieldname": "medication",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Medication",
    "options": "Medication"
   },
@@ -149,7 +145,8 @@
   },
   {
    "fieldname": "section_break_13",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "number_of_repeats_allowed",
@@ -158,7 +155,8 @@
   },
   {
    "fieldname": "section_break_u9av",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "intent",
@@ -183,7 +181,7 @@
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-11-01 23:09:36.121900",
+ "modified": "2025-03-26 04:51:43.292215",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Drug Prescription",

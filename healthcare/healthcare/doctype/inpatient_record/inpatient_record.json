@@ -65,10 +65,12 @@
   "blood_tests_section",
   "blood_tests",
   "btn_add_blood_test",
-  "biopsy_section",
+  "biopsies_section",
   "biopsies",
+  "btn_add_biopsy",
   "other_tests_section",
   "other_tests",
+  "btn_add_other_test",
   "investigations_section",
   "lab_test_prescription",
   "medication_section",
@@ -611,12 +613,7 @@
    "read_only": 1
   },
   {
-   "depends_on": "eval:!doc.__islocal;",
-   "fieldname": "biopsy_section",
-   "fieldtype": "Section Break",
-   "label": "Biopsy"
-  },
-  {
+   "collapsible": 1,
    "depends_on": "eval:!doc.__islocal;",
    "fieldname": "blood_tests_section",
    "fieldtype": "Section Break",
@@ -633,6 +630,7 @@
    "options": "Lab Test Recording"
   },
   {
+   "collapsible": 1,
    "depends_on": "eval:!doc.__islocal;",
    "fieldname": "other_tests_section",
    "fieldtype": "Section Break",
@@ -653,6 +651,23 @@
    "fieldtype": "Table MultiSelect",
    "label": "Opinions",
    "options": "Medical Department Opinion"
+  },
+  {
+   "fieldname": "btn_add_biopsy",
+   "fieldtype": "Button",
+   "label": "Add Biopsy"
+  },
+  {
+   "fieldname": "btn_add_other_test",
+   "fieldtype": "Button",
+   "label": "Add Test"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:!doc.__islocal;",
+   "fieldname": "biopsies_section",
+   "fieldtype": "Section Break",
+   "label": "Biopsy"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -662,7 +677,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-26 04:09:10.106435",
+ "modified": "2025-03-26 04:49:09.027637",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",

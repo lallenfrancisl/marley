@@ -27,6 +27,8 @@
   "result_format_tab",
   "result_format_section",
   "lab_test_template_type",
+  "sb_text_result",
+  "text_result",
   "section_break_descriptive_result",
   "descriptive_result",
   "section_break_normal",
@@ -118,12 +120,12 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "<b>Single</b>: Results which require only a single input.\n<br>\n<b>Compound</b>: Results which require multiple event inputs.\n<br>\n<b>Descriptive</b>: Tests which have multiple result components with manual result entry.\n<br>\n<b>Grouped</b>: Test templates which are a group of other test templates.\n<br>\n<b>No Result</b>: Tests with no results, can be ordered and billed but no Lab Test will be created. e.g.. Sub Tests for Grouped results",
+   "description": "<b>Single</b>: Results which require only a single input.\n<br>\n<b>Text</b>: Results which are text.\n<br>\n<b>Compound</b>: Results which require multiple event inputs.\n<br>\n<b>Descriptive</b>: Tests which have multiple result components with manual result entry.\n<br>\n<b>Grouped</b>: Test templates which are a group of other test templates.\n<br>\n<b>No Result</b>: Tests with no results, can be ordered and billed but no Lab Test will be created. e.g.. Sub Tests for Grouped results",
    "fieldname": "lab_test_template_type",
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Result Format",
-   "options": "\nSingle\nCompound\nDescriptive\nGrouped\nImaging\nNo Result"
+   "options": "\nSingle\nText\nCompound\nDescriptive\nGrouped\nImaging\nNo Result"
   },
   {
    "default": "0",
@@ -413,10 +415,19 @@
   {
    "fieldname": "column_break_buub",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sb_text_result",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "text_result",
+   "fieldtype": "Text Editor"
   }
  ],
  "links": [],
- "modified": "2025-03-25 14:04:56.620695",
+ "modified": "2025-03-26 04:48:12.194230",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Lab Test Template",
