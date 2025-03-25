@@ -29,6 +29,7 @@
   "primary_practitioner",
   "admission_encounter",
   "admission_practitioner",
+  "opinions",
   "medical_department",
   "admission_ordered_for",
   "admission_service_unit_type",
@@ -646,6 +647,12 @@
    "fieldname": "btn_add_blood_test",
    "fieldtype": "Button",
    "label": "Add Blood Test"
+  },
+  {
+   "fieldname": "opinions",
+   "fieldtype": "Table MultiSelect",
+   "label": "Opinions",
+   "options": "Medical Department Opinion"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -655,7 +662,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-26 03:36:51.607669",
+ "modified": "2025-03-26 04:09:10.106435",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
