@@ -2,27 +2,15 @@ frappe.provide("healthcare")
 
 healthcare.utils = {
 	async get_default_service_unit() {
-		try {
-			const unit = await frappe.db.get_doc(
-				'Healthcare Service Unit',
-				null,
-				{
-					healthcare_service_unit_name: 'Unit 1',
-				}
-			)
-
-			return unit?.name || null
-		} catch {
-			return null	
-		}
+		return frappe.db.get_single_value("Healthcare Settings", "default_service_unit")
 	},
 
-	get_default_department() { 
-    	return "General and Minimal Access Surgery" 
+	async get_default_department() { 
+		return frappe.db.get_single_value("Healthcare Settings", "default_department")
 	},
 
-	get_default_service_unit_type() {
-		return "General and Minimal Access Surgery Units"
+	async get_default_service_unit_type() {
+		return frappe.db.get_single_value("Healthcare Settings", "default_service_unit_type")
 	}
 }
 

@@ -102,7 +102,6 @@
    "label": "Item Group",
    "options": "Item Group",
    "read_only_depends_on": "eval:doc.link_existing_item",
-   "reqd": 1,
    "search_index": 1
   },
   {
@@ -127,7 +126,7 @@
    "options": "\nSingle\nCompound\nDescriptive\nGrouped\nImaging\nNo Result"
   },
   {
-   "default": "1",
+   "default": "0",
    "depends_on": "eval:doc.lab_test_template_type != 'Grouped' && (!doc.link_existing_item || !doc.__islocal);",
    "description": "If unchecked, the item will not be available in Sales Invoices for billing but can be used in group test creation. ",
    "fieldname": "is_billable",
@@ -250,6 +249,7 @@
    "default": "0",
    "fieldname": "disabled",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Disabled"
   },
   {
@@ -325,11 +325,13 @@
    "collapsible": 1,
    "fieldname": "codification",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Medical Coding"
   },
   {
    "fieldname": "nursing_checklist_template",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Nursing Checklist Template",
    "options": "Nursing Checklist Template"
   },
@@ -354,6 +356,7 @@
   {
    "fieldname": "worksheet_legend_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Worksheet & Legend"
   },
   {
@@ -370,11 +373,13 @@
    "depends_on": "eval:doc.lab_test_template_type != 'Imaging'",
    "fieldname": "sample_collection_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Sample Collection"
   },
   {
    "fieldname": "billing_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Billing"
   },
   {
@@ -411,7 +416,7 @@
   }
  ],
  "links": [],
- "modified": "2023-11-03 15:28:04.801812",
+ "modified": "2025-03-25 14:04:56.620695",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Lab Test Template",

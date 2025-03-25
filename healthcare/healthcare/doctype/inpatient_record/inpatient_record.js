@@ -12,33 +12,21 @@ frappe.ui.form.on('Inpatient Record', {
 			{fieldname: 'dosage_form', columns: 2}
 		];
 	},
-	refresh: function(frm) {
-		frm.set_query('admission_service_unit_type', function() {
-			return {
-				filters: {
-					'inpatient_occupancy': 1,
-					'allow_appointments': 0
-				}
-			};
-		});
-
+	refresh: async function(frm) {
 		if (!frm.doc.admission_service_unit_type) {
-			frm.doc.admission_service_unit_type = healthcare.utils.get_default_service_unit_type()
+			frm.doc.admission_service_unit_type = await healthcare.utils.get_default_service_unit_type()
 			frm.refresh_field("admission_service_unit_type")
 		}
 
-		if (!frm.doc.medical_department) {
-			frm.doc.medical_department = healthcare.utils.get_default_department()
-			frm.refresh_field("medical_department")
+		if (!frm.doc.admission_service_unit) {
+			frm.doc.admission_service_unit = await healthcare.utils.get_default_service_unit()
+			frm.refresh_field("admission_service_unit")
 		}
 
-		frm.set_query('admission_service_unit', function() {
-			return {
-				filters: {
-					'healthcare_service_unit_name': 'Unit 1',
-				}
-			};
-		});
+		if (!frm.doc.medical_department) {
+			frm.doc.medical_department = await healthcare.utils.get_default_department()
+			frm.refresh_field("medical_department")
+		}
 
 		frm.set_query('primary_practitioner', function() {
 			return {
@@ -47,6 +35,7 @@ frappe.ui.form.on('Inpatient Record', {
 				}
 			};
 		});
+
 		if (!frm.doc.__islocal) {
 			if (frm.doc.status == 'Admitted') {
 				frm.add_custom_button(__('Schedule Discharge'), function() {
@@ -63,7 +52,7 @@ frappe.ui.form.on('Inpatient Record', {
 				frm.add_custom_button(__('Discharge'), function() {
 					discharge_patient(frm);
 				} );
-			}
+			}	
 		}
 
 		frm.add_custom_button(__("Clinical Note"), function() {
@@ -75,9 +64,13 @@ frappe.ui.form.on('Inpatient Record', {
 		},__('Create'));
 
 		cleanup_procedures_table()
+		cleanup_blood_tests_table()
 	},
 	procedure_prescription_on_form_rendered: function() {
 		cleanup_procedures_table()
+	},
+	blood_tests_on_form_rendered: function() {
+		cleanup_blood_tests_table()
 	},
 	btn_transfer: function(frm) {
 		transfer_patient_dialog(frm);
@@ -90,6 +83,54 @@ frappe.ui.form.on('Inpatient Record', {
 	btn_add_procedure: function(frm) {
 		add_procedure_dialog(frm)
 	},
+	btn_add_blood_test(frm) {
+		add_blood_test_dialog(frm)
+	},
+    async patient(frm) {
+        const patient = await frappe.db.get_doc(
+        	'Patient',
+        	null,
+        	{
+        		uid: frm.doc.uid,
+        	}
+        );
+
+        if (!patient) {
+			return;
+        }
+
+		const fields = [
+			"occupation",
+			"marital_status",
+			"allergies",
+			"medical_history",
+			"medication",
+			"surgical_history",
+			"tobacco_past_use",
+			"tobacco_current_use",
+			"alcohol_past_use",
+			"alcohol_current_use",
+			"surrounding_factors",
+			"other_risk_factors",
+		];
+
+		frm.doc.occupation = patient.occupation
+		frm.doc.marital_status = patient.marital_status
+		frm.doc.allergies = patient.allergies
+		frm.doc.medical_history = patient.medical_history
+		frm.doc.medication = patient.medication
+		frm.doc.surgical_history = patient.surgical_history
+		frm.doc.tobacco_past_use = patient.tobacco_past_use
+		frm.doc.tobacco_current_use = patient.tobacco_current_use
+		frm.doc.alcohol_past_use = patient.alcohol_past_use
+		frm.doc.alcohol_current_use = patient.alcohol_current_use
+		frm.doc.surrounding_factors = patient.surrounding_factors
+		frm.doc.other_risk_factors = patient.other_risk_factors
+
+		for (const field of fields) {
+        	frm.refresh_field(field);
+		}
+    },
 });
 
 async function add_procedure_dialog(frm){
@@ -220,21 +261,6 @@ let admit_patient_dialog = async function(frm) {
 			dialog.hide();
 		}
 	});
-
-	dialog.fields_dict['service_unit_type'].get_query = function() {
-		return {
-			filters: {
-				'service_unit_type': 'General and Minimal Access Surgery Units',
-			}
-		};
-	};
-	dialog.fields_dict['service_unit'].get_query = function() {
-		return {
-			filters: {
-				'healthcare_service_unit_name': 'Unit 1',
-			}
-		};
-	};
 
 	dialog.show();
 };
@@ -420,8 +446,82 @@ let cancel_ip_order = function(frm) {
 	}, __('Reason for Cancellation'), __('Submit'));
 }
 
+function add_blood_test_dialog(frm) {
+	const dialog = new frappe.ui.Dialog({
+		title: "Add Blood Test",
+		width: 100,
+		fields: [
+			{
+				fieldtype: 'Link',
+				label: 'Test Type',
+				fieldname: 'template',
+				options: 'Lab Test Template',
+				reqd: 1,
+			},
+		],
+		primary_action_label: 'Add',
+		primary_action: async function() {
+			const template = dialog.get_value('template')
+
+			try {
+				const result = await frappe.call({
+					method: 'healthcare.healthcare.doctype.inpatient_record.inpatient_record.create_lab_test_from_inpatient_record',
+					args: {
+						record_name: frm.doc.name,
+						template_name: template,
+					},
+					freeze: true,
+					freeze_message: 'Creating Lab Test'
+				});
+
+
+				const row = frappe.model.add_child(frm.doc, 'Lab Test Recording', 'blood_tests');
+				row.inpatient_record = frm.doc.name
+				row.lab_test = result.message.name
+
+				frm.refresh_field('blood_tests');
+				await frm.save()
+
+				frappe.set_route(['Form', 'Lab Test', result.message.name])
+
+				dialog.hide()
+			} catch (error) {
+				console.error(error)		
+
+				dialog.hide()
+			}
+		},
+	});
+
+	dialog.show()
+}
+
 function cleanup_procedures_table() {
 	const wrapper = document.querySelector('div[data-fieldname="procedures_section"]')
+
+	// Hide the unwanted buttons in the popup and table
+	const elements = [
+		'.grid-insert-row-below',
+		'.grid-insert-row',
+		'.grid-append-row',
+		'.grid-duplicate-row',
+		'.grid-add-row',
+	] 
+
+	if (wrapper) {
+		for (const el of elements) {
+			const htmlEls = wrapper.querySelectorAll(el)
+			for (const htmlEl of htmlEls) {
+				if (htmlEl) {
+					htmlEl.style.display = 'none'
+				}
+			}
+		}
+	}
+}
+
+function cleanup_blood_tests_table() {
+	const wrapper = document.querySelector('div[data-fieldname="blood_tests_section"]')
 
 	// Hide the unwanted buttons in the popup and table
 	const elements = [

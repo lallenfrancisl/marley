@@ -13,7 +13,6 @@ frappe.ui.form.on('Lab Test', {
 	setup: function (frm) {
 		frm.get_field('normal_test_items').grid.editable_fields = [
 			{ fieldname: 'lab_test_name', columns: 3 },
-			{ fieldname: 'lab_test_event', columns: 2 },
 			{ fieldname: 'result_value', columns: 2 },
 			{ fieldname: 'lab_test_uom', columns: 1 },
 			{ fieldname: 'normal_range', columns: 2 }
@@ -83,7 +82,7 @@ frappe.ui.form.on('Lab Test', {
 		}
 	},
 
-	template: function(frm) {
+	template: async function(frm) {
 		if (frm.doc.template) {
 			frappe.call({
 				"method": "healthcare.healthcare.utils.get_medical_codes",

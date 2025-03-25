@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2025-03-25 17:42:34.008784",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "inpatient_record",
+  "lab_test",
+  "date",
+  "naming_series"
+ ],
+ "fields": [
+  {
+   "fieldname": "inpatient_record",
+   "fieldtype": "Link",
+   "label": "Inpatient Record",
+   "options": "Inpatient Record",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "lab_test",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lab Test",
+   "options": "Lab Test",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "HLC-LTR-.YYYY.-"
+  },
+  {
+   "fetch_from": "lab_test.date",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-26 03:18:19.277121",
+ "modified_by": "Administrator",
+ "module": "Healthcare",
+ "name": "Lab Test Recording",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

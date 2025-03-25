@@ -33,7 +33,7 @@ frappe.ui.form.on('Clinical Procedure Template', {
 	},
 
 
-	refresh: function (frm) {
+	refresh: async function (frm) {
 		frm.fields_dict['items'].grid.set_column_disp('barcode', false);
 		frm.fields_dict['items'].grid.set_column_disp('batch_no', false);
 
@@ -42,15 +42,6 @@ frappe.ui.form.on('Clinical Procedure Template', {
 				change_template_code(frm.doc);
 			});
 		}
-
-		// frm.set_query('item', function() {
-		// 	return {
-		// 		filters: {
-		// 			'disabled': false,
-		// 			'is_stock_item': false
-		// 		}
-		// 	};
-		// });
 
 		frm.set_query("code_value", "codification_table", function(doc, cdt, cdn) {
 			let row = frappe.get_doc(cdt, cdn);
@@ -71,7 +62,7 @@ frappe.ui.form.on('Clinical Procedure Template', {
 			};
 		});
 
-		frm.set_value("medical_department", healthcare.utils.get_default_department())
+		frm.set_value("medical_department", await healthcare.utils.get_default_department())
 	},
 
 	link_existing_item: function (frm) {

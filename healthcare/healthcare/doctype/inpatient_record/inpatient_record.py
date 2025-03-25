@@ -10,6 +10,7 @@ from frappe import _
 from frappe.desk.reportview import get_match_cond
 from frappe.model.document import Document
 from frappe.utils import get_datetime, get_time, get_link_to_form, getdate, now_datetime, today
+from ..lab_test.lab_test import create_lab_test_doc
 
 from healthcare.healthcare.doctype.nursing_task.nursing_task import NursingTask
 from healthcare.healthcare.utils import validate_nursing_tasks
@@ -526,3 +527,36 @@ def validate_incompleted_service_requests(inpatient_record):
 		message = _("There are Orders yet to be carried out<br> {0}")
 
 		frappe.throw(message.format(", ".join(service_requests)))
+
+
+@frappe.whitelist()
+def create_lab_test_from_inpatient_record(record_name, template_name):
+	if not (record_name and template_name):
+		return None
+
+	inpatient = frappe.get_doc("Inpatient Record", record_name)
+	template = frappe.get_doc("Lab Test Template", template_name)
+	patient = frappe.get_doc("Patient", inpatient.patient)
+	default_service_unit = frappe.db.get_single_value("Healthcare Settings", "default_service_unit")
+
+	lab_test = frappe.new_doc("Lab Test")
+	lab_test.invoiced = True
+	lab_test.patient = patient.name
+	lab_test.inpatient_record = inpatient.name
+	lab_test.patient_age = patient.get_age()
+	lab_test.patient_sex = patient.sex
+	lab_test.email = patient.email
+	lab_test.mobile = patient.mobile
+	lab_test.report_preference = patient.report_preference
+	lab_test.department = template.department
+	lab_test.template = template.name
+	lab_test.lab_test_group = template.lab_test_group
+	lab_test.result_date = getdate()
+	lab_test.date = getdate()
+	lab_test.company = inpatient.company
+	lab_test.service_unit = inpatient.admission_service_unit or default_service_unit
+
+	lab_test.save()
+	
+	return lab_test
+

@@ -482,6 +482,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "ED Number",
+   "no_copy": 1,
    "reqd": 1,
    "unique": 1
   },
@@ -507,6 +508,7 @@
    "fieldname": "abssby",
    "fieldtype": "Data",
    "label": "ABSSBY Number",
+   "no_copy": 1,
    "unique": 1
   },
   {
@@ -515,7 +517,9 @@
    "fieldtype": "Data",
    "in_standard_filter": 1,
    "label": "Aadhar Number",
-   "length": 12
+   "length": 12,
+   "no_copy": 1,
+   "unique": 1
   },
   {
    "fieldname": "discharge_practitioner",
@@ -546,7 +550,7 @@
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2025-03-25 01:30:03.918240",
+ "modified": "2025-03-25 19:49:21.572435",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",

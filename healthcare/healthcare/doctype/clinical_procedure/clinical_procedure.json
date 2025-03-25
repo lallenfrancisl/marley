@@ -132,7 +132,6 @@
    "reqd": 1
   },
   {
-   "default": "Unit 1",
    "fieldname": "service_unit",
    "fieldtype": "Link",
    "label": "Service Unit",

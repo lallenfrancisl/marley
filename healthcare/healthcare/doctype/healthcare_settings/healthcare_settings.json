@@ -22,6 +22,11 @@
   "inpatient_settings_section",
   "allow_discharge_despite_unbilled_services",
   "do_not_bill_inpatient_encounters",
+  "defaults",
+  "default_service_unit",
+  "default_service_unit_type",
+  "column_break_iwqh",
+  "default_department",
   "orders_tab",
   "default_intent",
   "column_break_1oy0",
@@ -204,7 +209,7 @@
    "label": "Do not print or email Lab Tests without Approval"
   },
   {
-   "default": "1",
+   "default": "0",
    "description": "If checked, a customer will be created, mapped to Patient.\nPatient Invoices will be created against this Customer. You can also select existing Customer while creating Patient.",
    "fieldname": "link_customer_to_patient",
    "fieldtype": "Check",
@@ -401,11 +406,38 @@
    "fieldname": "orders_tab",
    "fieldtype": "Tab Break",
    "label": "Orders"
+  },
+  {
+   "fieldname": "defaults",
+   "fieldtype": "Section Break",
+   "label": "Defaults"
+  },
+  {
+   "fieldname": "default_service_unit",
+   "fieldtype": "Link",
+   "label": "Default Service Unit",
+   "options": "Healthcare Service Unit"
+  },
+  {
+   "fieldname": "default_service_unit_type",
+   "fieldtype": "Link",
+   "label": "Default Service Unit Type",
+   "options": "Healthcare Service Unit Type"
+  },
+  {
+   "fieldname": "column_break_iwqh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "default_department",
+   "fieldtype": "Link",
+   "label": "Default Department",
+   "options": "Medical Department"
   }
  ],
  "issingle": 1,
  "links": [],
- "modified": "2023-11-06 14:20:22.424895",
+ "modified": "2025-03-26 01:23:10.193868",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Healthcare Settings",

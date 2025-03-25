@@ -8,6 +8,18 @@
  "document_type": "Document",
  "engine": "InnoDB",
  "field_order": [
+  "sb_normal",
+  "lab_test_html",
+  "normal_test_items",
+  "sb_descriptive_result",
+  "descriptive_result",
+  "sb_descriptive",
+  "descriptive_test_items",
+  "organisms_section",
+  "organism_test_items",
+  "sb_sensitivity",
+  "sensitivity_test_items",
+  "section_break_kksp",
   "naming_series",
   "template",
   "lab_test_name",
@@ -26,10 +38,10 @@
   "printed_on",
   "sb_first",
   "patient",
+  "inpatient_record",
   "patient_name",
   "patient_age",
   "patient_sex",
-  "inpatient_record",
   "report_preference",
   "email",
   "mobile",
@@ -43,17 +55,6 @@
   "employee_designation",
   "user",
   "sample",
-  "sb_normal",
-  "lab_test_html",
-  "normal_test_items",
-  "sb_descriptive_result",
-  "descriptive_result",
-  "sb_descriptive",
-  "descriptive_test_items",
-  "organisms_section",
-  "organism_test_items",
-  "sb_sensitivity",
-  "sensitivity_test_items",
   "sb_comments",
   "lab_test_comment",
   "sb_customresult",
@@ -81,7 +82,7 @@
  ],
  "fields": [
   {
-   "fetch_from": "patient.inpatient_record",
+   "allow_in_quick_entry": 1,
    "fieldname": "inpatient_record",
    "fieldtype": "Link",
    "label": "Inpatient Record",
@@ -91,14 +92,14 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "options": "HLC-LAB-.YYYY.-",
    "print_hide": 1,
-   "report_hide": 1,
-   "reqd": 1
+   "report_hide": 1
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "invoiced",
    "fieldtype": "Check",
    "label": "Invoiced",
@@ -113,6 +114,7 @@
    "in_standard_filter": 1,
    "label": "Patient",
    "options": "Patient",
+   "read_only": 1,
    "reqd": 1,
    "search_index": 1,
    "set_only_once": 1
@@ -121,6 +123,7 @@
    "fetch_from": "patient.patient_name",
    "fieldname": "patient_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Patient Name",
    "print_hide": 1,
    "read_only": 1,
@@ -129,6 +132,7 @@
   {
    "fieldname": "patient_age",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Age",
    "print_hide": 1,
    "read_only": 1,
@@ -148,6 +152,7 @@
   {
    "fieldname": "practitioner",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Requesting Practitioner",
@@ -194,6 +199,7 @@
    "fetch_from": "template.department",
    "fieldname": "department",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "in_standard_filter": 1,
    "label": "Department",
@@ -202,9 +208,10 @@
    "search_index": 1
   },
   {
+   "default": "Completed",
    "fieldname": "status",
    "fieldtype": "Select",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Status",
    "options": "Draft\nCompleted\nApproved\nRejected\nCancelled",
    "read_only": 1,
@@ -213,6 +220,7 @@
   {
    "fieldname": "submitted_date",
    "fieldtype": "Datetime",
+   "hidden": 1,
    "label": "Submitted Date",
    "print_hide": 1,
    "report_hide": 1
@@ -228,6 +236,7 @@
   {
    "fieldname": "sample",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "in_filter": 1,
    "label": "Sample ID",
@@ -262,12 +271,14 @@
    "allow_on_submit": 1,
    "fieldname": "printed_on",
    "fieldtype": "Datetime",
+   "hidden": 1,
    "label": "Printed on",
    "read_only": 1
   },
   {
    "fieldname": "employee",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Employee (Lab Technician)",
    "no_copy": 1,
    "options": "Employee",
@@ -278,6 +289,7 @@
    "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Lab Technician Name",
    "no_copy": 1,
    "print_hide": 1,
@@ -314,12 +326,15 @@
    "report_hide": 1
   },
   {
+   "collapsible": 1,
    "fieldname": "sb_first",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Patient Information"
   },
   {
    "fieldname": "lab_test_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Test Name",
    "no_copy": 1,
@@ -333,7 +348,7 @@
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "in_standard_filter": 1,
-   "label": "Test Template",
+   "label": "Test Type",
    "options": "Lab Test Template",
    "print_hide": 1,
    "report_hide": 1,
@@ -350,11 +365,13 @@
    "report_hide": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "sb_normal",
    "fieldtype": "Section Break",
    "label": "Compound Test Result"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "normal_test_items",
    "fieldtype": "Table",
    "label": "Normal Test Result",
@@ -366,12 +383,14 @@
    "fieldtype": "HTML"
   },
   {
+   "allow_in_quick_entry": 1,
    "depends_on": "descriptive_toggle",
    "fieldname": "organisms_section",
    "fieldtype": "Section Break",
    "label": "Organism Test Result"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "sb_sensitivity",
    "fieldtype": "Section Break",
    "label": "Sensitivity Test Result"
@@ -388,6 +407,7 @@
    "collapsible": 1,
    "fieldname": "sb_comments",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Comments"
   },
   {
@@ -401,6 +421,7 @@
    "collapsible": 1,
    "fieldname": "sb_customresult",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Custom Result"
   },
   {
@@ -479,6 +500,7 @@
    "fetch_from": "practitioner.department",
    "fieldname": "requesting_department",
    "fieldtype": "Link",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Requesting Department",
    "options": "Medical Department",
@@ -488,6 +510,7 @@
    "fetch_from": "practitioner.practitioner_name",
    "fieldname": "practitioner_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Requesting Practitioner",
    "read_only": 1
   },
@@ -495,6 +518,7 @@
    "collapsible": 1,
    "fieldname": "result_legend_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Result Legend Print"
   },
   {
@@ -512,7 +536,8 @@
   },
   {
    "fieldname": "section_break_50",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "worksheet_instructions",
@@ -524,6 +549,7 @@
    "collapsible": 1,
    "fieldname": "worksheet_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Worksheet Print"
   },
   {
@@ -535,6 +561,7 @@
    "report_hide": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "sb_descriptive",
    "fieldtype": "Section Break",
    "label": "Descriptive Test Result"
@@ -560,6 +587,7 @@
    "label": "Descriptive Result"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "sb_descriptive_result",
    "fieldtype": "Section Break",
    "label": "Descriptive Result"
@@ -593,12 +621,14 @@
    "collapsible": 1,
    "fieldname": "more_information_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "More Information"
   },
   {
    "collapsible": 1,
    "fieldname": "medical_coding_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Medical Coding"
   },
   {
@@ -623,16 +653,21 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_kksp",
+   "fieldtype": "Section Break",
+   "label": "Details"
   }
  ],
- "is_submittable": 1,
  "links": [
   {
    "link_doctype": "Nursing Task",
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2023-06-21 00:31:52.282467",
+ "modified": "2025-03-26 02:44:49.886541",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Lab Test",
@@ -640,19 +675,19 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "amend": 1,
-   "cancel": 1,
    "create": 1,
+   "delete": 1,
    "email": 1,
+   "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Laboratory User",
    "share": 1,
-   "submit": 1,
    "write": 1
   },
   {
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -663,6 +698,8 @@
    "write": 1
   },
   {
+   "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -683,7 +720,6 @@
    "role": "System Manager",
    "select": 1,
    "share": 1,
-   "submit": 1,
    "write": 1
   }
  ],
