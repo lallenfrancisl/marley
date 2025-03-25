@@ -132,7 +132,7 @@ class InpatientRecord(Document):
 			doc.inpatient_record = self
 			doc.practitioner = proc.healthcare_practitioner
 			doc.team = proc.team
-			doc.service_unit  = self.inpatient_occupancies[0] or None
+			doc.service_unit  = frappe.db.get_single_value("Healthcare Settings", "default_service_unit") or None
 			doc.medical_department = self.medical_department
 			doc.scrub_nurse = proc.scrub_nurse
 			doc.anesthesia_type = proc.anesthesia_type

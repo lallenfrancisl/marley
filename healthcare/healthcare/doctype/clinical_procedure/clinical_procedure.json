@@ -7,12 +7,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "naming_series",
-  "title",
-  "appointment",
-  "procedure_template",
-  "column_break_30",
-  "company",
   "section_break_6",
   "patient",
   "patient_name",
@@ -20,6 +14,8 @@
   "patient_age",
   "inpatient_record",
   "notes",
+  "diagnosis",
+  "other_diagnosis",
   "column_break_7",
   "status",
   "practitioner",
@@ -32,6 +28,13 @@
   "start_date",
   "start_time",
   "sample",
+  "section_break_augi",
+  "naming_series",
+  "title",
+  "appointment",
+  "procedure_template",
+  "column_break_30",
+  "company",
   "consumables_section",
   "consume_stock",
   "warehouse",
@@ -132,6 +135,7 @@
    "reqd": 1
   },
   {
+   "default": "Unit 1",
    "fieldname": "service_unit",
    "fieldtype": "Link",
    "label": "Service Unit",
@@ -159,6 +163,7 @@
   {
    "fieldname": "sample",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Sample",
    "options": "Sample Collection"
   },
@@ -171,6 +176,7 @@
    "read_only": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "notes",
    "fieldtype": "Long Text",
    "label": "OT Findings"
@@ -227,6 +233,7 @@
    "depends_on": "eval:!doc.__islocal",
    "fieldname": "status",
    "fieldtype": "Select",
+   "hidden": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Status",
@@ -339,6 +346,24 @@
    "in_list_view": 1,
    "label": "Anesthesia Type",
    "options": "Anesthesia Type"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "allow_on_submit": 1,
+   "fieldname": "diagnosis",
+   "fieldtype": "Long Text",
+   "label": "Diagnosis"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "allow_on_submit": 1,
+   "fieldname": "other_diagnosis",
+   "fieldtype": "Long Text",
+   "label": "Other Diagnosis"
+  },
+  {
+   "fieldname": "section_break_augi",
+   "fieldtype": "Section Break"
   }
  ],
  "is_submittable": 1,
@@ -348,7 +373,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-25 01:58:17.217061",
+ "modified": "2025-03-26 05:03:59.899003",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",
