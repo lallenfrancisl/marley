@@ -37,6 +37,12 @@
   "discharge_datetime",
   "discharge_practitioner",
   "report_preference",
+  "viral_markers_section",
+  "is_hiv",
+  "column_break_mqav",
+  "is_hbsag",
+  "column_break_mudn",
+  "is_hcv",
   "customer_details_section",
   "customer",
   "customer_group",
@@ -544,13 +550,44 @@
    "in_list_view": 1,
    "label": "Date Of Discharge",
    "read_only": 1
+  },
+  {
+   "fieldname": "viral_markers_section",
+   "fieldtype": "Section Break",
+   "label": "Viral Markers"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hiv",
+   "fieldtype": "Check",
+   "label": "HIV"
+  },
+  {
+   "fieldname": "column_break_mqav",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hbsag",
+   "fieldtype": "Check",
+   "label": "HBsAg"
+  },
+  {
+   "fieldname": "column_break_mudn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hcv",
+   "fieldtype": "Check",
+   "label": "HCV"
   }
  ],
  "icon": "fa fa-user",
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2025-03-25 19:49:21.572435",
+ "modified": "2025-03-26 05:09:12.062498",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",
