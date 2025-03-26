@@ -374,14 +374,13 @@
    "options": "Healthcare Service Unit"
   }
  ],
- "is_submittable": 1,
  "links": [
   {
    "link_doctype": "Nursing Task",
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-26 19:19:44.049954",
+ "modified": "2025-03-27 01:55:26.725877",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",
@@ -398,11 +397,9 @@
    "report": 1,
    "role": "Nursing User",
    "share": 1,
-   "submit": 1,
    "write": 1
   },
   {
-   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -411,8 +408,8 @@
    "read": 1,
    "report": 1,
    "role": "Physician",
+   "select": 1,
    "share": 1,
-   "submit": 1,
    "write": 1
   }
  ],
