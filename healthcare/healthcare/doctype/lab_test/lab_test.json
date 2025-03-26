@@ -19,6 +19,8 @@
   "organism_test_items",
   "sb_sensitivity",
   "sensitivity_test_items",
+  "sb_customresult",
+  "custom_result",
   "section_break_kksp",
   "naming_series",
   "template",
@@ -57,8 +59,6 @@
   "sample",
   "sb_comments",
   "lab_test_comment",
-  "sb_customresult",
-  "custom_result",
   "medical_coding_section",
   "codification_table",
   "worksheet_section",
@@ -261,10 +261,10 @@
    "read_only": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "result_date",
    "fieldtype": "Date",
    "label": "Result Date",
-   "read_only": 1,
    "search_index": 1
   },
   {
@@ -418,10 +418,8 @@
    "print_hide": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "sb_customresult",
    "fieldtype": "Section Break",
-   "hidden": 1,
    "label": "Custom Result"
   },
   {
@@ -655,7 +653,6 @@
    "search_index": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "section_break_kksp",
    "fieldtype": "Section Break",
    "label": "Details"
@@ -667,7 +664,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-26 02:44:49.886541",
+ "modified": "2025-03-27 02:05:58.848610",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Lab Test",
