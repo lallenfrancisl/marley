@@ -1,6 +1,8 @@
 // Copyright (c) 2016, ESS LLP and contributors
 // For license information, please see license.txt
 frappe.provide('erpnext.queries');
+frappe.provide("healthcare")
+
 frappe.ui.form.on('Patient Appointment', {
 	setup: function(frm) {
 		frm.custom_make_buttons = {
@@ -151,7 +153,7 @@ frappe.ui.form.on('Patient Appointment', {
         }
 	},
 
-	appointment_for: function(frm) {
+	appointment_for: async function(frm) {
 		if (frm.doc.appointment_for == 'Practitioner') {
 			if (!frm.doc.practitioner) {
 				frm.set_value('department', '');
@@ -162,7 +164,8 @@ frappe.ui.form.on('Patient Appointment', {
 			frm.set_value({
 				'practitioner': '',
 				'practitioner_name': '',
-				'department': '',
+				'department': await healthcare.utils.get_default_department(),
+				'service_unit': await healthcare.utils.get_default_service_unit(),
 			});
 			frm.trigger('set_book_action');
 		} else if (frm.doc.appointment_for == 'Department') {

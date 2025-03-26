@@ -92,6 +92,16 @@ frappe.ui.form.on('Inpatient Record', {
 	btn_add_other_test(frm) {
 		add_test_dialog(frm, 'other_tests')
 	},
+	async btn_book_followup(frm) {
+		frappe.new_doc(
+			"Patient Appointment",
+			{
+				department: await healthcare.utils.get_default_department(),
+				service_unit: await healthcare.utils.get_default_service_unit(),
+				patient: frm.doc.patient,
+			},
+		)
+	},
     async patient(frm) {
         const patient = await frappe.db.get_doc(
         	'Patient',

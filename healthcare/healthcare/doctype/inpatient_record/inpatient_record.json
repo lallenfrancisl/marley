@@ -96,7 +96,9 @@
   "discharge_note",
   "admission_service_unit",
   "discharge_medications_section",
-  "discharge_medications"
+  "discharge_medications",
+  "booking_section",
+  "btn_book_followup"
  ],
  "fields": [
   {
@@ -681,6 +683,17 @@
    "fieldname": "discharge_medications",
    "fieldtype": "Table",
    "options": "Drug Prescription"
+  },
+  {
+   "depends_on": "eval:(doc.status == \"Discharge Scheduled\" || doc.status == \"Discharged\")",
+   "fieldname": "booking_section",
+   "fieldtype": "Section Break",
+   "label": "Book Followup"
+  },
+  {
+   "fieldname": "btn_book_followup",
+   "fieldtype": "Button",
+   "label": "Book Followup Appointment"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -690,7 +703,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-26 05:44:37.790079",
+ "modified": "2025-03-26 14:33:21.551878",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
