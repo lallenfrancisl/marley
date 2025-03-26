@@ -103,6 +103,10 @@ frappe.ui.form.on('Inpatient Record', {
 		)
 	},
     async patient(frm) {
+    	if (!frm.doc.patient) {
+			return
+    	}
+
         const patient = await frappe.db.get_doc(
         	'Patient',
         	null,
