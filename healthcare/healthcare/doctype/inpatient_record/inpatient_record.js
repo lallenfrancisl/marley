@@ -361,6 +361,7 @@ let transfer_patient_dialog = function(frm) {
 var schedule_discharge = function(frm) {
 	var dialog = new frappe.ui.Dialog ({
 		title: 'Inpatient Discharge',
+		size: 'extra-large',
 		fields: [
 			{
 				fieldtype: 'Link',
@@ -383,6 +384,38 @@ var schedule_discharge = function(frm) {
 				fieldtype: 'Section Break'
 			},
 			{
+				fieldtype: 'Table',
+				label: 'Discharge Medications',
+				fieldname: 'discharge_medications',
+				cannot_add_rows: false,
+        		in_place_edit: true,
+				fields: [
+					{
+						fieldtype: 'Data',
+						label: 'Drug Name',
+						fieldname: 'drug_name',
+						in_list_view: 1,
+						reqd: 1,
+					},
+					{
+						fieldtype: 'Link',
+						label: 'Dosage',
+						fieldname: 'dosage',
+						options: 'Prescription Dosage',
+						in_list_view: 1,
+						reqd: 1,
+					},
+					{
+						fieldtype: 'Link',
+						label: 'Period',
+						fieldname: 'period',
+						options: 'Prescription Duration',
+						in_list_view: 1,
+						reqd: 1,
+					}
+				],
+			},
+			{
 				fieldtype: 'Text',
 				label: 'Discharge Instructions',
 				fieldname: 'discharge_instructions'
@@ -395,7 +428,7 @@ var schedule_discharge = function(frm) {
 				fieldtype: 'Long Text',
 				label: 'Discharge Note',
 				fieldname: 'discharge_note'
-			}
+			},
 		],
 		primary_action_label: __('Order Discharge'),
 		primary_action : function() {
@@ -405,7 +438,8 @@ var schedule_discharge = function(frm) {
 				discharge_ordered_datetime: dialog.get_value('discharge_ordered_datetime'),
 				followup_date: dialog.get_value('followup_date'),
 				discharge_instructions: dialog.get_value('discharge_instructions'),
-				discharge_note: dialog.get_value('discharge_note')
+				discharge_note: dialog.get_value('discharge_note'),
+				discharge_medications: dialog.get_value('discharge_medications'),
 			}
 			frappe.call ({
 				method: 'healthcare.healthcare.doctype.inpatient_record.inpatient_record.schedule_discharge',

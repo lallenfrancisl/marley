@@ -94,7 +94,9 @@
   "followup_date",
   "sb_discharge_note",
   "discharge_note",
-  "admission_service_unit"
+  "admission_service_unit",
+  "discharge_medications_section",
+  "discharge_medications"
  ],
  "fields": [
   {
@@ -668,6 +670,17 @@
    "fieldname": "biopsies_section",
    "fieldtype": "Section Break",
    "label": "Biopsy"
+  },
+  {
+   "depends_on": "eval:(doc.status == \"Discharge Scheduled\" || doc.status == \"Discharged\")",
+   "fieldname": "discharge_medications_section",
+   "fieldtype": "Section Break",
+   "label": "Discharge Medications"
+  },
+  {
+   "fieldname": "discharge_medications",
+   "fieldtype": "Table",
+   "options": "Drug Prescription"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -677,7 +690,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-26 04:49:09.027637",
+ "modified": "2025-03-26 05:44:37.790079",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
