@@ -2,6 +2,7 @@
  "actions": [],
  "autoname": "naming_series:",
  "creation": "2018-07-11 17:48:51.404139",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -703,7 +704,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-26 14:33:21.551878",
+ "modified": "2025-03-26 18:50:39.909806",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
@@ -770,6 +771,7 @@
    "write": 1
   },
   {
+   "delete": 1,
    "email": 1,
    "export": 1,
    "permlevel": 2,
@@ -777,7 +779,9 @@
    "read": 1,
    "report": 1,
    "role": "Physician",
-   "share": 1
+   "select": 1,
+   "share": 1,
+   "write": 1
   },
   {
    "email": 1,
