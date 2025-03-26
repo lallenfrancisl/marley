@@ -302,8 +302,6 @@ class Patient(Document):
 			},
 		)
 
-		print("length: ", len(records))
-
 		for record in records:
 			# Copy medical history section
 			record.occupation = self.occupation
@@ -318,8 +316,11 @@ class Patient(Document):
 			record.alcohol_current_use = self.alcohol_current_use
 			record.surrounding_factors = self.surrounding_factors
 			record.other_risk_factors = self.other_risk_factors
+			record.is_hcv = self.is_hcv
+			record.is_hiv = self.is_hiv
+			record.is_hbsag = self.is_hbsag
 
-			frappe.db.set_value("Inpatient Record", record.name, record)
+			frappe.db.set_value("Inpatient Record", record.name, record, update_modified=False)
 
 
 def create_customer(doc):

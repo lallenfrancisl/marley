@@ -42,8 +42,13 @@
   "mlr_number",
   "police_informed",
   "rsa",
+  "hd_viral_marker",
+  "is_hiv",
+  "is_hbsag",
+  "is_hcv",
   "secondary_practitioner",
   "admission_instruction",
+  "float_nnrd",
   "encounter_details_section",
   "chief_complaint",
   "column_break_29",
@@ -250,7 +255,6 @@
    "read_only": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "references",
    "fieldtype": "Section Break",
    "label": "Admission Order Details"
@@ -695,6 +699,33 @@
    "fieldname": "btn_book_followup",
    "fieldtype": "Button",
    "label": "Book Followup Appointment"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hiv",
+   "fieldtype": "Check",
+   "label": "HIV"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hbsag",
+   "fieldtype": "Check",
+   "label": "HBsAg"
+  },
+  {
+   "fieldname": "float_nnrd",
+   "fieldtype": "Float"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hcv",
+   "fieldtype": "Check",
+   "label": "HCV"
+  },
+  {
+   "fieldname": "hd_viral_marker",
+   "fieldtype": "Heading",
+   "label": "Viral Markers"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -704,7 +735,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-26 18:50:39.909806",
+ "modified": "2025-03-27 03:07:09.392613",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",

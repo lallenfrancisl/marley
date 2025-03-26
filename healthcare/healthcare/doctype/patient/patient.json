@@ -552,6 +552,7 @@
    "read_only": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "viral_markers_section",
    "fieldtype": "Section Break",
    "label": "Viral Markers"
@@ -587,7 +588,7 @@
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2025-03-26 05:09:12.062498",
+ "modified": "2025-03-27 02:59:34.375812",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",

@@ -146,27 +146,32 @@ class InpatientRecord(Document):
 		if not self.patient:
 			return
 
-		patient = frappe.get_doc("Patient", self.patient)
+		frappe.db.set_value(
+		    "Patient",
+		    self.patient, {
+		        "admitted_datetime": self.admitted_datetime,
+		        "discharge_datetime": self.discharge_datetime,
+		        "discharge_practitioner": self.discharge_practitioner,
+		        "is_hiv": self.is_hiv,
+		        "is_hbsag": self.is_hbsag,
+		        "is_hcv": self.is_hcv,
 
-		patient.admitted_datetime = self.admitted_datetime
-		patient.discharge_datetime = self.discharge_datetime
-		patient.discharge_practitioner = self.discharge_practitioner
-
-		# Copy medical history section
-		patient.occupation = self.occupation
-		patient.marital_status = self.marital_status
-		patient.allergies = self.allergies
-		patient.medical_history = self.medical_history
-		patient.medication = self.medication
-		patient.surgical_history = self.surgical_history
-		patient.tobacco_past_use = self.tobacco_past_use
-		patient.tobacco_current_use = self.tobacco_current_use
-		patient.alcohol_past_use = self.alcohol_past_use
-		patient.alcohol_current_use = self.alcohol_current_use
-		patient.surrounding_factors = self.surrounding_factors
-		patient.other_risk_factors = self.other_risk_factors
-
-		patient.save()
+		        # Copy medical history section
+		        "occupation": self.occupation,
+		        "marital_status": self.marital_status,
+		        "allergies": self.allergies,
+		        "medical_history": self.medical_history,
+		        "medication": self.medication,
+		        "surgical_history": self.surgical_history,
+		        "tobacco_past_use": self.tobacco_past_use,
+		        "tobacco_current_use": self.tobacco_current_use,
+		        "alcohol_past_use": self.alcohol_past_use,
+		        "alcohol_current_use": self.alcohol_current_use,
+		        "surrounding_factors": self.surrounding_factors,
+		        "other_risk_factors": self.other_risk_factors,
+		    },
+		    update_modified=False
+		)
 
 
 @frappe.whitelist()
