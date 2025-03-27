@@ -280,7 +280,11 @@ def schedule_discharge(args):
 
 def set_details_from_ip_order(inpatient_record, ip_order):
 	for key in ip_order:
-		inpatient_record.set(key, ip_order[key])
+		if not key == "discharge_medications":
+			inpatient_record.set(key, ip_order[key])
+	
+	for item in ip_order["discharge_medications"]:
+		inpatient_record.append("discharge_medications", item)
 
 
 def set_ip_child_records(inpatient_record, inpatient_record_child, encounter_child):
