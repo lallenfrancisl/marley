@@ -1,0 +1,48 @@
+div#body {
+  .page-head {
+    background: #f0f9ff;
+  }
+
+  .content {
+    &.page-container {
+      background: #f0f9ff;
+    }
+  }
+}
+
+div[data-page-route="Workspaces"] {
+  .widget {
+    &.number-widget-box {
+      border: 1px solid #615fff;
+    }
+  }
+}
+
+.desk-sidebar {
+  .standard-sidebar-item.selected {
+    background-color: #615fff;
+
+    &>a {
+      --icon-stroke: white;
+      color: white;
+    }
+  }
+}
+
+.widget {
+  &.dashboard-widget-box {
+    border-color: #00d492;
+  }
+}
+
+.btn {
+  &.btn-primary {
+    background-color: #615fff;
+  }
+
+  &.btn-default {
+    --icon-stroke: white;
+    background-color: black;
+    color: white;
+  }
+}
