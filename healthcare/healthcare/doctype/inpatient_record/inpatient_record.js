@@ -405,15 +405,24 @@ var schedule_discharge = function(frm) {
         		in_place_edit: true,
 				fields: [
 					{
-						fieldtype: 'Data',
-						label: 'Drug Name',
-						fieldname: 'drug_name',
+						fieldtype: 'Link',
+						label: 'Route Of Administration',
+						fieldname: 'dosage_form',
+						options: 'Dosage Form',
 						in_list_view: 1,
 						reqd: 1,
 					},
 					{
 						fieldtype: 'Link',
-						label: 'Dosage',
+						label: 'Drug',
+						fieldname: 'drug',
+						in_list_view: 1,
+						reqd: 1,
+						options: 'Medicine'
+					},
+					{
+						fieldtype: 'Link',
+						label: 'Frequency',
 						fieldname: 'dosage',
 						options: 'Prescription Dosage',
 						in_list_view: 1,

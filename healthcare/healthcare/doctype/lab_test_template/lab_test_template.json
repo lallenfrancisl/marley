@@ -27,8 +27,6 @@
   "result_format_tab",
   "result_format_section",
   "lab_test_template_type",
-  "sb_text_result",
-  "text_result",
   "section_break_descriptive_result",
   "descriptive_result",
   "section_break_normal",
@@ -92,7 +90,6 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Item Code",
-   "mandatory_depends_on": "eval:!doc.link_existing_item",
    "no_copy": 1,
    "read_only_depends_on": "eval:!doc.__islocal"
   },
@@ -415,19 +412,10 @@
   {
    "fieldname": "column_break_buub",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "sb_text_result",
-   "fieldtype": "Section Break",
-   "label": "Result"
-  },
-  {
-   "fieldname": "text_result",
-   "fieldtype": "Text Editor"
   }
  ],
  "links": [],
- "modified": "2025-03-26 04:48:12.194230",
+ "modified": "2025-03-29 15:13:00.330078",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Lab Test Template",
