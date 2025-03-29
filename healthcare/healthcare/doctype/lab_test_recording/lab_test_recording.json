@@ -6,6 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "inpatient_record",
+  "template",
+  "type",
   "lab_test",
   "date",
   "naming_series"
@@ -42,12 +44,29 @@
    "in_list_view": 1,
    "label": "Date",
    "read_only": 1
+  },
+  {
+   "fetch_from": "lab_test.template",
+   "fieldname": "template",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Template",
+   "options": "Lab Test Template",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "template.lab_test_name",
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Type",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-03-29 15:20:10.343473",
+ "modified": "2025-03-29 18:54:06.394456",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Lab Test Recording",
