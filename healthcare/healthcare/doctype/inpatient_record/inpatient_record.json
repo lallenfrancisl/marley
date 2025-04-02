@@ -48,7 +48,6 @@
   "is_hcv",
   "secondary_practitioner",
   "admission_instruction",
-  "float_nnrd",
   "encounter_details_section",
   "chief_complaint",
   "local_examination",
@@ -713,10 +712,6 @@
    "label": "HBsAg"
   },
   {
-   "fieldname": "float_nnrd",
-   "fieldtype": "Float"
-  },
-  {
    "default": "0",
    "fieldname": "is_hcv",
    "fieldtype": "Check",
@@ -740,7 +735,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-29 14:56:56.179457",
+ "modified": "2025-04-02 15:21:19.794756",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Inpatient Record",
