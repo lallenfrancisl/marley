@@ -20,6 +20,7 @@ frappe.listview_settings["Patient Appointment"] = {
 			"Checked In": "blue",
 			"Checked Out": "orange",
 			Confirmed: "green",
+			Done: "green",
 			"No Show": "red",
 		};
 		return [__(doc.status), colors[doc.status], "status,=," + doc.status];
