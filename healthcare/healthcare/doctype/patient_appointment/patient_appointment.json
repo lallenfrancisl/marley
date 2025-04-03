@@ -207,7 +207,6 @@
    "fetch_from": "patient.patient_name",
    "fieldname": "patient_name",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Patient Name",
    "read_only": 1
   },
@@ -412,6 +411,7 @@
    "set_only_once": 1
   },
   {
+   "depends_on": "eval: !doc.__islocal",
    "fieldname": "section_patient_details",
    "fieldtype": "Section Break",
    "label": "Patient Details"
@@ -430,7 +430,7 @@
   }
  ],
  "links": [],
- "modified": "2025-04-03 00:18:16.585625",
+ "modified": "2025-04-03 12:06:36.456547",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient Appointment",
