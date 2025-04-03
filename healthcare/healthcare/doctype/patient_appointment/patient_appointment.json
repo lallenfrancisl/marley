@@ -256,7 +256,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "invoiced",
    "fieldtype": "Check",
    "label": "Invoiced",
@@ -430,7 +430,7 @@
   }
  ],
  "links": [],
- "modified": "2025-04-02 15:45:20.339913",
+ "modified": "2025-04-03 00:18:16.585625",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient Appointment",

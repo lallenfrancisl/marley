@@ -5,10 +5,10 @@ frappe.provide("healthcare")
 
 frappe.ui.form.on('Patient Appointment', {
 	setup: function(frm) {
-		frm.custom_make_buttons = {
-			'Vital Signs': 'Vital Signs',
-			'Patient Encounter': 'Patient Encounter'
-		};
+		// frm.custom_make_buttons = {
+		// 	'Vital Signs': 'Vital Signs',
+		// 	'Patient Encounter': 'Patient Encounter'
+		// };
 	},
 
 	onload: function(frm) {
@@ -76,62 +76,74 @@ frappe.ui.form.on('Patient Appointment', {
 			frm.page.set_primary_action(__('Save'), () => frm.save());
 		}
 
-		if (frm.doc.patient) {
-			frm.add_custom_button(__('Patient History'), function() {
-				frappe.route_options = { 'patient': frm.doc.patient };
-				frappe.set_route('patient_history');
-			}, __('View'));
-		}
+		// if (frm.doc.patient) {
+		// 	frm.add_custom_button(__('Patient History'), function() {
+		// 		frappe.route_options = { 'patient': frm.doc.patient };
+		// 		frappe.set_route('patient_history');
+		// 	}, __('View'));
+		// }
 
-		if (["Open", "Checked In", "Confirmed"].includes(frm.doc.status) || (frm.doc.status == "Scheduled" && !frm.doc.__islocal)) {
+		if (
+			!frm.doc.__islocal &&
+			(
+				["Open", "Checked In", "Confirmed"].includes(frm.doc.status)
+					|| frm.doc.status == "Scheduled"
+			)
+		) {
 			frm.add_custom_button(__('Cancel'), function() {
 				update_status(frm, 'Cancelled');
 			});
+			frm.change_custom_button_type(__('Cancel'), null, 'danger');
+
 			frm.add_custom_button(__('Reschedule'), function() {
 				check_and_set_availability(frm);
 			});
+			frm.change_custom_button_type(__('Reschedule'), null, 'info');
 
-			if (frm.doc.procedure_template) {
-				frm.add_custom_button(__('Clinical Procedure'), function() {
-					frappe.model.open_mapped_doc({
-						method: 'healthcare.healthcare.doctype.clinical_procedure.clinical_procedure.make_procedure',
-						frm: frm,
-					});
-				}, __('Create'));
-			} else if (frm.doc.therapy_type) {
-				frm.add_custom_button(__('Therapy Session'), function() {
-					frappe.model.open_mapped_doc({
-						method: 'healthcare.healthcare.doctype.therapy_session.therapy_session.create_therapy_session',
-						frm: frm,
-					})
-				}, 'Create');
-			} else {
-				frm.add_custom_button(__('Patient Encounter'), function() {
-					frappe.model.open_mapped_doc({
-						method: 'healthcare.healthcare.doctype.patient_appointment.patient_appointment.make_encounter',
-						frm: frm,
-					});
-				}, __('Create'));
-			}
+			// if (frm.doc.procedure_template) {
+			// 	frm.add_custom_button(__('Clinical Procedure'), function() {
+			// 		frappe.model.open_mapped_doc({
+			// 			method: 'healthcare.healthcare.doctype.clinical_procedure.clinical_procedure.make_procedure',
+			// 			frm: frm,
+			// 		});
+			// 	}, __('Create'));
+			// } else if (frm.doc.therapy_type) {
+			// 	frm.add_custom_button(__('Therapy Session'), function() {
+			// 		frappe.model.open_mapped_doc({
+			// 			method: 'healthcare.healthcare.doctype.therapy_session.therapy_session.create_therapy_session',
+			// 			frm: frm,
+			// 		})
+			// 	}, 'Create');
+			// } else {
+			// 	frm.add_custom_button(__('Patient Encounter'), function() {
+			// 		frappe.model.open_mapped_doc({
+			// 			method: 'healthcare.healthcare.doctype.patient_appointment.patient_appointment.make_encounter',
+			// 			frm: frm,
+			// 		});
+			// 	}, __('Create'));
+			// }
 
-			frm.add_custom_button(__('Vital Signs'), function() {
-				create_vital_signs(frm);
-			}, __('Create'));
+			// frm.add_custom_button(__('Vital Signs'), function() {
+			// 	create_vital_signs(frm);
+			// }, __('Create'));
 
 			if (["Open", "Scheduled"].includes(frm.doc.status)) {
-				frm.add_custom_button(__("Confirm"), function() {
-					frm.set_value("status", "Confirmed");
+				frm.add_custom_button(__("Mark as done"), function() {
+					frm.set_value("status", "Done");
 					frm.save();
-				}, __("Status"));
+				});
+				frm.change_custom_button_type(__("Mark as done"), null, 'success');
 			}
+		} else {
+			// frm.clear_custom_buttons()
 		}
 
-		if (!frm.doc.__islocal && ["Open", "Confirmed"].includes(frm.doc.status) && frm.doc.appointment_based_on_check_in) {
-			frm.add_custom_button(__("Check In"), () => {
-				frm.set_value("status", "Checked In");
-				frm.save();
-			});
-		}
+		// if (!frm.doc.__islocal && ["Open", "Confirmed"].includes(frm.doc.status) && frm.doc.appointment_based_on_check_in) {
+		// 	frm.add_custom_button(__("Check In"), () => {
+		// 		frm.set_value("status", "Checked In");
+		// 		frm.save();
+		// 	});
+		// }
 
 		frm.trigger("make_invoice_button");
 	},
