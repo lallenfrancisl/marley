@@ -129,8 +129,7 @@ frappe.ui.form.on('Patient Appointment', {
 
 			if (["Open", "Scheduled"].includes(frm.doc.status)) {
 				frm.add_custom_button(__("Mark as done"), function() {
-					frm.set_value("status", "Done");
-					frm.save();
+					update_status(frm, 'Done');
 				});
 				frm.change_custom_button_type(__("Mark as done"), null, 'success');
 			}
@@ -862,8 +861,16 @@ let create_vital_signs = function(frm) {
 };
 
 let update_status = function(frm, status) {
+	let msg = ''
+
+	if (status === 'Cancelled') {
+		msg = __('Are you sure you want to cancel this appointment ?')
+	} else if (status === 'Done') {
+		msg = 'Are you sure you want to this appointment as done ?'	
+	}
+
 	let doc = frm.doc;
-	frappe.confirm(__('Are you sure you want to cancel this appointment?'),
+	frappe.confirm(msg,
 		function() {
 			frappe.call({
 				method: 'healthcare.healthcare.doctype.patient_appointment.patient_appointment.update_status',

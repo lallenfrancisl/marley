@@ -104,6 +104,7 @@
    "depends_on": "eval:!doc.__islocal",
    "fieldname": "status",
    "fieldtype": "Select",
+   "hidden": 1,
    "in_filter": 1,
    "label": "Status",
    "options": "\nScheduled\nOpen\nConfirmed\nChecked In\nChecked Out\nClosed\nCancelled\nNo Show",
@@ -135,13 +136,13 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.appointment_for==\"Service Unit\"",
    "fieldname": "service_unit",
    "fieldtype": "Link",
    "label": "Service Unit",
    "mandatory_depends_on": "eval:doc.appointment_for==\"Service Unit\"",
    "options": "Healthcare Service Unit",
-   "read_only": 1,
-   "read_only_depends_on": "eval:doc.appointment_for!=\"Service Unit\""
+   "read_only": 1
   },
   {
    "depends_on": "eval:!doc.__is_local",
@@ -360,6 +361,7 @@
    "fetch_from": "practitioner.practitioner_name",
    "fieldname": "practitioner_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Practitioner Name",
    "read_only": 1
   },
@@ -430,7 +432,7 @@
   }
  ],
  "links": [],
- "modified": "2025-04-03 12:06:36.456547",
+ "modified": "2025-04-03 18:02:02.601664",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient Appointment",

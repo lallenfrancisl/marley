@@ -152,7 +152,7 @@ def manage_fee_validity(appointment):
 				if fee_validity.visited > 0:
 					fee_validity.visited -= 1
 					fee_validity.save(ignore_permissions=True)
-		fee_validity = create_fee_validity(appointment)
+		# fee_validity = create_fee_validity(appointment)
 	return fee_validity
 
 
