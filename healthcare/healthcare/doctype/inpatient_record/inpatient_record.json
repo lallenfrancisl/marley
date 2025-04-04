@@ -359,7 +359,6 @@
    "label": "Inpatient Occupancy"
   },
   {
-   "default": "General And Minimal Access Surgery Units ",
    "fieldname": "admission_service_unit_type",
    "fieldtype": "Link",
    "hidden": 1,
