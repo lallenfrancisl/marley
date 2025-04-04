@@ -1,0 +1,21 @@
+{
+  "name": "Scheduled Appointments",
+  "owner": "Administrator",
+  "creation": "2025-03-26 23:19:11.185253",
+  "modified": "2025-04-04 01:41:13.866053",
+  "modified_by": "Administrator",
+  "docstatus": 0,
+  "idx": 2,
+  "is_standard": 1,
+  "label": "Scheduled Appointments",
+  "type": "Document Type",
+  "function": "Count",
+  "document_type": "Patient Appointment",
+  "report_function": "Sum",
+  "is_public": 1,
+  "show_percentage_stats": 1,
+  "stats_time_interval": "Daily",
+  "filters_json": "[[\"Patient Appointment\",\"status\",\"in\",[\"Scheduled\",\"No Show\",null],false]]",
+  "dynamic_filters_json": "[]",
+  "doctype": "Number Card"
+}
