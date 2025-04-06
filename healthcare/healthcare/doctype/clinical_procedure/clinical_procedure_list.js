@@ -1,4 +1,13 @@
 frappe.listview_settings['Clinical Procedure'] = {
+	refresh: function() {
+    	// Hide name filter from Listview
+    	$('div:has(>span[data-sort-by="name"])').hide();
+    	$('div.list-row-col:has(>span[title^="ID"])').hide();
+
+        $("div.level-right").each(function() {
+            $(this).hide();
+        })
+	},
 	get_indicator: function(doc) {
 		var colors = {
 			'Completed': 'green',

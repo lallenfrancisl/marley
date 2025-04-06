@@ -131,7 +131,7 @@
    "fieldname": "procedure_template",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Procedure Template",
+   "label": "Procedure",
    "options": "Clinical Procedure Template",
    "reqd": 1
   },
@@ -235,8 +235,6 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "hidden": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
    "label": "Status",
    "options": "Draft\nSubmitted\nCancelled\nIn Progress\nCompleted\nPending",
    "read_only": 1
@@ -293,7 +291,6 @@
    "fieldname": "practitioner_name",
    "fieldtype": "Data",
    "hidden": 1,
-   "in_list_view": 1,
    "label": "Practitioner Name",
    "read_only": 1
   },
@@ -380,7 +377,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-03-28 22:17:48.915170",
+ "modified": "2025-04-06 14:29:46.922977",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",
