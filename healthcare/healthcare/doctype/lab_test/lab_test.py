@@ -3,6 +3,7 @@
 # For license information, please see license.txt
 
 
+from copy import deepcopy
 import frappe
 from frappe import _
 from frappe.model.document import Document
@@ -368,7 +369,10 @@ def create_sample_collection(lab_test, template, patient, invoice):
 
 def load_result_format(lab_test, template, prescription, invoice):
 	if template.lab_test_template_type == "Single":
-		create_normals(template, lab_test)
+		edited_template = deepcopy(template)
+		edited_template.lab_test_name = template.result_label
+
+		create_normals(edited_template, lab_test)
 
 	elif template.lab_test_template_type == "Compound":
 		create_compounds(template, lab_test, False)

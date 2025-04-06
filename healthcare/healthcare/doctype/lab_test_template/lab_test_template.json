@@ -30,6 +30,7 @@
   "section_break_descriptive_result",
   "descriptive_result",
   "section_break_normal",
+  "result_label",
   "lab_test_uom",
   "secondary_uom",
   "conversion_factor",
@@ -153,7 +154,7 @@
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
    "in_list_view": 1,
-   "label": "UOM",
+   "label": "Unit Of Measurement (UOM)",
    "options": "Lab Test UOM"
   },
   {
@@ -412,10 +413,15 @@
   {
    "fieldname": "column_break_buub",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "result_label",
+   "fieldtype": "Data",
+   "label": "Result Label"
   }
  ],
  "links": [],
- "modified": "2025-03-29 15:13:00.330078",
+ "modified": "2025-04-06 13:10:27.722499",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Lab Test Template",
