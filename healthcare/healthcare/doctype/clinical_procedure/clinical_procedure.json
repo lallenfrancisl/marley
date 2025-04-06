@@ -2,7 +2,7 @@
  "actions": [],
  "autoname": "naming_series:",
  "creation": "2017-04-07 12:52:43.542429",
- "default_view": "Report",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -379,7 +379,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-04-06 14:38:04.533009",
+ "modified": "2025-04-06 14:39:23.140937",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",
