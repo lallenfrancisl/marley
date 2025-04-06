@@ -154,6 +154,8 @@
    "default": "Today",
    "fieldname": "start_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Start Date"
   },
   {
@@ -377,7 +379,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-04-06 14:29:46.922977",
+ "modified": "2025-04-06 14:38:04.533009",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",
