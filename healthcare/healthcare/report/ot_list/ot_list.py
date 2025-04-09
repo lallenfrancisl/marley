@@ -74,10 +74,39 @@ def execute(filters=None):
 
 		is_inpatient = frappe.db.exists("Inpatient Record", item.inpatient_record)
 
+		operation = f"<strong>{item.procedure_template}</strong>"
+		if item.anesthesia_type:
+			an_type = frappe.get_doc("Anesthesia Type", item.anesthesia_type)
+			operation = f"<strong>{item.procedure_template} under {an_type.title}</strong>"
+			
+
 		if is_inpatient:
 			ip_record = frappe.get_doc("Inpatient Record", item.inpatient_record)
 
-			name = f"<strong>{patient.patient_name}</strong><br><br>"
+			name = f"<strong>{patient.patient_name}</strong>"
+
+			if patient.is_hiv or patient.is_hbsag or patient.is_hcv:
+				markers = []
+
+				if patient.is_hiv:
+					markers.append("HIV")
+
+				if patient.is_hbsag:
+					markers.append("HbsAg")
+
+				if patient.is_hcv:
+					markers.append("HCV")
+
+				name += f"""
+					<div>
+						(UNIVERSAL MARKER)<br>
+						<strong>{', '.join(markers)}</strong>
+					</div>
+					<br>
+				"""
+			else:
+				name += "<br><br>"
+
 
 			if patient.surgical_history:
 				name += f"""
@@ -174,7 +203,7 @@ def execute(filters=None):
 					"age_sex": f"{patient.age.years}/{patient.sex}",
 					"ipd_no": ip_record.cr_number if ip_record else "", 
 					"diagnosis": diagnosis,
-					"operations": f"<strong>{item.procedure_template}</strong>",
+					"operations": operation,
 				}
 			})
 		else:
@@ -191,7 +220,7 @@ def execute(filters=None):
 					"age_sex": f"{patient.age.years}/{patient.sex}",
 					"ipd_no": "", 
 					"diagnosis": "",
-					"operations": f"<strong>{item.procedure_template}</strong>",
+					"operations": operation,
 				}
 			})
 
