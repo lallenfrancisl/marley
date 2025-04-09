@@ -9,10 +9,12 @@
  "field_order": [
   "section_break_6",
   "patient",
+  "ed_number",
   "patient_name",
   "patient_sex",
   "patient_age",
   "inpatient_record",
+  "ipd_number",
   "notes",
   "diagnosis",
   "other_diagnosis",
@@ -73,7 +75,6 @@
    "fieldname": "appointment",
    "fieldtype": "Link",
    "hidden": 1,
-   "in_standard_filter": 1,
    "label": "Appointment",
    "options": "Patient Appointment",
    "set_only_once": 1
@@ -112,14 +113,12 @@
    "default": "General and Minimal Access Surgery",
    "fieldname": "medical_department",
    "fieldtype": "Link",
-   "in_standard_filter": 1,
    "label": "Medical Department",
    "options": "Medical Department"
   },
   {
    "fieldname": "practitioner",
    "fieldtype": "Link",
-   "in_standard_filter": 1,
    "label": "Healthcare Practitioner",
    "options": "Healthcare Practitioner"
   },
@@ -131,6 +130,7 @@
    "fieldname": "procedure_template",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Procedure",
    "options": "Clinical Procedure Template",
    "reqd": 1
@@ -233,6 +233,7 @@
    "read_only": 1
   },
   {
+   "default": "Pending",
    "depends_on": "eval:!doc.__islocal",
    "fieldname": "status",
    "fieldtype": "Select",
@@ -283,6 +284,7 @@
    "label": "More Information"
   },
   {
+   "fetch_from": "patient.patient_name",
    "fieldname": "patient_name",
    "fieldtype": "Data",
    "hidden": 1,
@@ -371,6 +373,22 @@
    "fieldtype": "Link",
    "label": "OT",
    "options": "Healthcare Service Unit"
+  },
+  {
+   "fetch_from": "patient.uid",
+   "fieldname": "ed_number",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "ED Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "inpatient_record.cr_number",
+   "fieldname": "ipd_number",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "IPD Number",
+   "read_only": 1
   }
  ],
  "links": [
@@ -379,7 +397,7 @@
    "link_fieldname": "reference_name"
   }
  ],
- "modified": "2025-04-06 14:39:23.140937",
+ "modified": "2025-04-09 06:20:07.799401",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Clinical Procedure",

@@ -1,0 +1,97 @@
+<style type="text/css">
+    /* General styles for both screen display and print */
+    body,
+    html {
+        margin-top: 10;
+        padding: 0;
+        width: 100%;
+        height: auto;
+        /* Allow content to expand */
+        font-family: Arial, sans-serif;
+        /* Example font */
+    }
+
+    /* Ensure consistent letter spacing across all media */
+    .title-letter-spacing {
+        letter-spacing: .2rem;
+    }
+
+    /* Styles specific to printing and PDF generation */
+    @media print {
+
+        /* Set page size and margins for printing */
+        @page {
+            size: A4;
+            /* Use fixed A4 page size */
+            margin-top: 10mm;
+        }
+
+        /* Force a page break before elements with the class "page-break" */
+        .page-break {
+            page-break-before: always;
+            margin-top: 10mm;
+            /* Add some space after the break */
+        }
+
+        th,
+        td {
+            padding: 1px;
+            border: 1px solid black;
+            /* Example border for clarity */
+        }
+
+        /* Hide elements that should not appear in print (optional) */
+        .no-print {
+            display: none !important;
+        }
+    }
+</style>
+
+<div style="font-family:Arial">
+    <div class="text-center">
+        {% if (filters.date) %}
+            <strong>
+                {%= frappe.datetime.global_date_format(filters.date) %}
+            </strong>
+        {% endif %}
+    </div>
+	<table style="width:100%; font-size: 11px">
+        <tr class="title-letter-spacing" style="text-align: center; font-weight:bold">
+            <td style="border: 1.5px solid black; width: 2rem">SL No.</td>
+            <td style="border: 1.5px solid black; width: 4rem">NAME</td>
+            <td style="border: 1.5px solid black; width: 2rem">ABMMSBY No</td>
+            <td style="border: 1.5px solid black; width: 1rem">AGE/SEX</td>
+            <td style="border: 1.5px solid black; width: 2rem">IPD No</td>
+            <td style="border: 1.5px solid black; width: 9rem">DIAGNOSIS</td>
+            <td style="border: 1.5px solid black; width: 9rem">OPERATION</td>
+        </tr>
+
+		<tbody>
+			{% for(var i=0, l=data.length; i<l; i++) { %}
+				<tr style="border-bottom: 1px solid black">
+                    <td style="text-align: center; border: 1px dotted black">
+                        {%= i + 1 %}
+                    </td>
+                    <td style="border-right: 1px dotted black">
+                        {%= data[i].formatted.name %}
+                    </td>
+                    <td style="border-right: 1px dotted black">
+                        {%= data[i].formatted.abssby_no %}
+                    </td>
+                    <td style="border-right: 1px dotted black">
+                        {%= data[i].formatted.age_sex %}
+                    </td>
+                    <td style="border-right: 1px dotted black">
+                        {%= data[i].formatted.ipd_no %}
+                    </td>
+                    <td style="border-right: 1px dotted black">
+                        {%= data[i].formatted.diagnosis %}
+                    </td>
+                    <td style="border-right: 1px dotted black">
+                        {%= data[i].formatted.operations %}
+                    </td>
+				</tr>
+			{% endfor%}
+		</tbody>
+	</table>
+</div>

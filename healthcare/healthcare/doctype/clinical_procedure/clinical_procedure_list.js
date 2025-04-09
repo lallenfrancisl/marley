@@ -7,6 +7,10 @@ frappe.listview_settings['Clinical Procedure'] = {
         $("div.level-right").each(function() {
             $(this).hide();
         })
+
+		if (location.pathname.endsWith("/view/report")) {
+			window.location.replace('/app/query-report/OT List')
+		}
 	},
 	get_indicator: function(doc) {
 		var colors = {
