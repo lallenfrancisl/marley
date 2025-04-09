@@ -68,7 +68,12 @@ def execute(filters=None):
 
 	for item in procedures:
 		patient = frappe.get_doc("Patient", item.patient)
-		ip_record = frappe.get_doc("Inpatient Record", item.inpatient_record)
+		ip_record = None
+
+		try:
+			ip_record = frappe.get_doc("Inpatient Record", item.inpatient_record)
+		except:
+			ip_record = None
 
 		if not patient:
 			continue
@@ -161,14 +166,14 @@ def execute(filters=None):
 			"name": patient.patient_name,
 			"abssby_no": patient.abssby or "NO",
 			"age_sex": f"{patient.age.years}/{patient.sex}",
-			"ipd_no": ip_record.cr_number,
-			"diagnosis": (" with ".join(map(lambda x: x.diagnosis, ip_record.diagnosis)) if len(ip_record.diagnosis) else "") + "\n",
+			"ipd_no": ip_record.cr_number if ip_record else "",
+			"diagnosis": (" with ".join(map(lambda x: x.diagnosis, ip_record.diagnosis)) if ip_record and len(ip_record.diagnosis) else ""),
 			"operations": item.procedure_template,
 			"formatted": {
 				"name": name,
 				"abssby_no": patient.abssby or "NO",
 				"age_sex": f"{patient.age.years}/{patient.sex}",
-				"ipd_no": ip_record.cr_number, 
+				"ipd_no": ip_record.cr_number if ip_record else "", 
 				"diagnosis": diagnosis,
 				"operations": f"<strong>{item.procedure_template}</strong>",
 			}
