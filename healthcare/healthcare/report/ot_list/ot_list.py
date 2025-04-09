@@ -186,7 +186,7 @@ def execute(filters=None):
 				"diagnosis": "",
 				"operations": item.procedure_template,
 				"formatted": {
-					"name": name,
+					"name": patient.patient_name,
 					"abssby_no": patient.abssby or "NO",
 					"age_sex": f"{patient.age.years}/{patient.sex}",
 					"ipd_no": "", 
