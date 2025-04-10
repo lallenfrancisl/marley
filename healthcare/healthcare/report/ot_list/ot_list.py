@@ -111,9 +111,6 @@ def execute(filters=None):
 			if patient.surgical_history:
 				name += f"""
 					<div>
-						Surgical History
-					</div>
-					<div>
 						{new_lines_to_br(patient.surgical_history)}
 					</div>
 					<br>
@@ -121,9 +118,6 @@ def execute(filters=None):
 			
 			if patient.medical_history:
 				name += f"""
-					<div>
-						Medical History
-					</div>
 					<div>
 						{new_lines_to_br(patient.medical_history)}
 					</div>
@@ -133,9 +127,6 @@ def execute(filters=None):
 			if patient.medication:
 				name += f"""
 					<div>
-						Medications
-					</div>
-					<div>
 						{new_lines_to_br(patient.medication)}
 					</div>
 					<br>
@@ -144,9 +135,6 @@ def execute(filters=None):
 			if patient.surrounding_factors:
 				name += f"""
 					<div>
-						Surrounding factors
-					</div>
-					<div>
 						{new_lines_to_br(patient.surrounding_factors)}
 					</div>
 					<br>
@@ -154,9 +142,6 @@ def execute(filters=None):
 
 			if patient.other_risk_factors:
 				name += f"""
-					<div>
-						Other risk factors
-					</div>
 					<div>
 						{new_lines_to_br(patient.other_risk_factors)}
 					</div>
