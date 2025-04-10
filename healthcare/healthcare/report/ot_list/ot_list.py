@@ -185,7 +185,7 @@ def execute(filters=None):
 				"formatted": {
 					"name": name,
 					"abssby_no": patient.abssby or "NO",
-					"age_sex": f"{patient.age.years}/{patient.sex}",
+					"age_sex": f"{patient.age.years}/{abbreviate_sex(patient.sex)}",
 					"ipd_no": ip_record.cr_number if ip_record else "", 
 					"diagnosis": diagnosis,
 					"operations": operation,
@@ -202,7 +202,7 @@ def execute(filters=None):
 				"formatted": {
 					"name": patient.patient_name,
 					"abssby_no": patient.abssby or "NO",
-					"age_sex": f"{patient.age.years}/{patient.sex}",
+					"age_sex": f"{patient.age.years}/{abbreviate_sex(patient.sex)}",
 					"ipd_no": "", 
 					"diagnosis": "",
 					"operations": operation,
@@ -217,3 +217,6 @@ def new_lines_to_br(str):
 def sanitize(str):
 	soup = BeautifulSoup(str, "html.parser")
 	return soup.get_text()
+
+def abbreviate_sex(str):
+	return "".join(map(lambda x: x[0], filter(lambda x: x, str.split()))).upper()
