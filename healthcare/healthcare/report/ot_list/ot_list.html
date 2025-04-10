@@ -1,4 +1,8 @@
 <style type="text/css">
+    * {
+        font-size: 5pt !important;
+    }
+
     /* General styles for both screen display and print */
     body,
     html {
@@ -9,6 +13,14 @@
         /* Allow content to expand */
         font-family: Arial, sans-serif;
         /* Example font */
+    }
+
+    .print-format .letter-head {
+        margin-bottom: 5px;
+    }
+
+    .print-format tr:first-child td {
+        padding: 0; 
     }
 
     /* Ensure consistent letter spacing across all media */
@@ -55,15 +67,15 @@
             </strong>
         {% endif %}
     </div>
-	<table style="width:100%; font-size: 11px">
+	<table style="width:100%">
         <tr class="title-letter-spacing" style="text-align: center; font-weight:bold">
-            <td style="border: 1.5px solid black; width: 2rem">SL No.</td>
-            <td style="border: 1.5px solid black; width: 4rem">NAME</td>
-            <td style="border: 1.5px solid black; width: 2rem">ABMMSBY No</td>
-            <td style="border: 1.5px solid black; width: 1rem">AGE/SEX</td>
-            <td style="border: 1.5px solid black; width: 2rem">IPD No</td>
-            <td style="border: 1.5px solid black; width: 9rem">DIAGNOSIS</td>
-            <td style="border: 1.5px solid black; width: 9rem">OPERATION</td>
+            <td style="border: 1.5px solid black; width: 1rem; padding: 0;">SL No.</td>
+            <td style="border: 1.5px solid black; width: 4rem; padding: 0;">NAME</td>
+            <td style="border: 1.5px solid black; width: 2rem; padding: 0;">ABMMSBY No</td>
+            <td style="border: 1.5px solid black; width: 1rem; padding: 0;">AGE/SEX</td>
+            <td style="border: 1.5px solid black; width: 2rem; padding: 0;">IPD No</td>
+            <td style="border: 1.5px solid black; width: 9rem; padding: 0;">DIAGNOSIS</td>
+            <td style="border: 1.5px solid black; width: 9rem; padding: 0;">OPERATION</td>
         </tr>
 
 		<tbody>
