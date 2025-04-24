@@ -178,14 +178,14 @@ def execute(filters=None):
 			data.append({
 				"name": patient.patient_name,
 				"abssby_no": patient.abssby or "NO",
-				"age_sex": f"{patient.age.years}/{patient.sex}",
+				"age_sex": f"{get_years(patient)}/{patient.sex}",
 				"ipd_no": ip_record.cr_number if ip_record else "",
 				"diagnosis": (" with ".join(map(lambda x: x.diagnosis, ip_record.diagnosis)) if ip_record and len(ip_record.diagnosis) else ""),
 				"operations": item.procedure_template,
 				"formatted": {
 					"name": name,
 					"abssby_no": patient.abssby or "NO",
-					"age_sex": f"{patient.age.years}/{abbreviate_sex(patient.sex)}",
+					"age_sex": f"{get_years(patient)}/{abbreviate_sex(patient.sex)}",
 					"ipd_no": ip_record.cr_number if ip_record else "", 
 					"diagnosis": diagnosis,
 					"operations": operation,
@@ -195,14 +195,14 @@ def execute(filters=None):
 			data.append({
 				"name": patient.patient_name,
 				"abssby_no": patient.abssby or "NO",
-				"age_sex": f"{patient.age.years}/{patient.sex}",
+				"age_sex": f"{get_years(patient)}/{patient.sex}",
 				"ipd_no": "",
 				"diagnosis": "",
 				"operations": item.procedure_template,
 				"formatted": {
 					"name": patient.patient_name,
 					"abssby_no": patient.abssby or "NO",
-					"age_sex": f"{patient.age.years}/{abbreviate_sex(patient.sex)}",
+					"age_sex": f"{get_years(patient)}/{abbreviate_sex(patient.sex)}",
 					"ipd_no": "", 
 					"diagnosis": "",
 					"operations": operation,
@@ -210,6 +210,12 @@ def execute(filters=None):
 			})
 
 	return columns, data, filters
+
+def get_years(patient):
+    if not patient.age:
+        return "--"
+    
+    return f"{patient.age.years}"
 
 def new_lines_to_br(str):
 	return str.replace("\n", "<br>")
